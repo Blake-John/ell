@@ -1,0 +1,27 @@
+{
+	"nodes":[
+		{"id":"613d97f5b9a9bf28","type":"text","text":"# Vector Analysis","x":268,"y":-111,"width":286,"height":66},
+		{"id":"949ba7fd94b96932","type":"text","text":"## Differential and Integral","x":-80,"y":215,"width":246,"height":91},
+		{"id":"7eba696d13b78ea7","x":638,"y":-556,"width":262,"height":176,"type":"text","text":"## Vector Expression in Different Coordinates"},
+		{"id":"c6d7517b921fef24","type":"file","file":"Physics/Electrodynamics/notes/01 Vector Analysis/1.4 Curvilinear Coordinates.md","x":1080,"y":-700,"width":400,"height":400},
+		{"id":"2149a54f35651fb6","x":661,"y":153,"width":279,"height":107,"type":"text","text":"## Advanced Vector Function"},
+		{"id":"04a08b15fd7c41d1","type":"file","file":"Physics/Electrodynamics/notes/01 Vector Analysis/1.5 The Dirac Delta Function.md","x":1080,"y":-247,"width":400,"height":400},
+		{"id":"152b2e49415d231f","type":"file","file":"Physics/Electrodynamics/notes/01 Vector Analysis/1.6 The Theory of Vector Fields.md","x":1080,"y":240,"width":400,"height":400},
+		{"id":"b8efabfadffc70c2","type":"text","text":"## Basic Concept","x":-94,"y":-304,"width":260,"height":57},
+		{"id":"355ee257c7e91b43","type":"file","file":"Physics/Electrodynamics/notes/01 Vector Analysis/1.1 Vector Algebra.md","x":-614,"y":-647,"width":400,"height":400},
+		{"id":"f3b917265e103724","type":"file","file":"Physics/Electrodynamics/notes/01 Vector Analysis/1.2 Differential Calculus.md","x":-614,"y":-78,"width":400,"height":400},
+		{"id":"5cc899c09fcbd361","type":"file","file":"Physics/Electrodynamics/notes/01 Vector Analysis/1.3 Integral Calculus.md","x":-614,"y":440,"width":400,"height":400}
+	],
+	"edges":[
+		{"id":"5328cfa75f60856d","fromNode":"613d97f5b9a9bf28","fromSide":"left","toNode":"b8efabfadffc70c2","toSide":"right"},
+		{"id":"69240152c71c2d4f","fromNode":"b8efabfadffc70c2","fromSide":"left","toNode":"355ee257c7e91b43","toSide":"right"},
+		{"id":"0cc129d37d8d93b6","fromNode":"613d97f5b9a9bf28","fromSide":"left","toNode":"949ba7fd94b96932","toSide":"right"},
+		{"id":"d467d8d47f5290c1","fromNode":"949ba7fd94b96932","fromSide":"left","toNode":"f3b917265e103724","toSide":"right"},
+		{"id":"1d2a0db2a77657ad","fromNode":"949ba7fd94b96932","fromSide":"left","toNode":"5cc899c09fcbd361","toSide":"right"},
+		{"id":"497d1ebaa55c2403","fromNode":"613d97f5b9a9bf28","fromSide":"right","toNode":"7eba696d13b78ea7","toSide":"left"},
+		{"id":"9e190db9baf24087","fromNode":"7eba696d13b78ea7","fromSide":"right","toNode":"c6d7517b921fef24","toSide":"left"},
+		{"id":"0de1849e26089e55","fromNode":"613d97f5b9a9bf28","fromSide":"right","toNode":"2149a54f35651fb6","toSide":"left"},
+		{"id":"326ffbb85fca7bc7","fromNode":"2149a54f35651fb6","fromSide":"right","toNode":"04a08b15fd7c41d1","toSide":"left"},
+		{"id":"8bd4b7d1d08d3a5f","fromNode":"2149a54f35651fb6","fromSide":"right","toNode":"152b2e49415d231f","toSide":"left"}
+	]
+}

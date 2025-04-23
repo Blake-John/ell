@@ -1,0 +1,26 @@
+[list2timeline]
+
+- Basic
+	- [1.基本使用手册](../../../../Computer/03%20Linux/Basic/1.基本使用手册.md)
+	- [2.包管理器](../../../../Computer/03%20Linux/Basic/2.包管理器.md)
+	- [3.文件类型与权限](../../../../Computer/03%20Linux/Basic/3.文件类型与权限.md)
+	- [4.脚本](../../../../Computer/03%20Linux/Basic/4.脚本.md)
+	- [5.vim](../../../../Computer/03%20Linux/Basic/5.vim.md)
+	- [工具集](../../../../Computer/03%20Linux/Basic/工具集.md)
+	- [终端配置](../../../../Computer/03%20Linux/Basic/终端配置.md)
+- Arch
+	- [01 基本安装](../../../../Computer/03%20Linux/Arch/01%20基本安装.md)
+	- [02 桌面环境](../../../../Computer/03%20Linux/Arch/02%20桌面环境.md)
+	- [03 基础配置和工具](../../../../Computer/03%20Linux/Arch/03%20基础配置和工具.md)
+	- [04 开发工具](../../../../Computer/03%20Linux/Arch/04%20开发工具.md)
+	- Hyprland
+		- [01 安装Hyprland](../../../../Computer/03%20Linux/Arch/Hyprland/01%20安装Hyprland.md)
+		- [02 配置Hyprland](../../../../Computer/03%20Linux/Arch/Hyprland/02%20配置Hyprland.md)
+		- [03 终端](../../../../Computer/03%20Linux/Arch/Hyprland/03%20终端.md)
+		- [04 waybar](../../../../Computer/03%20Linux/Arch/Hyprland/04%20waybar.md)
+		- [05 组件](../../../../Computer/03%20Linux/Arch/Hyprland/05%20组件.md)
+- Ubuntu
+	- [0.安装Linux](../../../../Computer/03%20Linux/Ubuntu/0.安装Linux.md)
+	- [1.软件的安装与管理](../../../../Computer/03%20Linux/Ubuntu/1.软件的安装与管理.md)
+	- [2.Nvidia](../../../../Computer/03%20Linux/Ubuntu/2.Nvidia.md)
+	- [Ubuntu 20.04 美化](../../../../Computer/03%20Linux/Ubuntu/Ubuntu%2020.04%20美化.md)

@@ -1,0 +1,23 @@
+/* container */
+.modal.mod-canvas-help,
+.suggestion-container,
+.popover,
+.prompt,
+.menu,
+.suggestion-container.mod-search-suggestion {
+    background-color: var(--workspace-background-translucent);
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(12px) saturate(190%) contrast(50%) brightness(130%);
+}
+
+.theme-dark .modal.mod-canvas-help,
+.theme-dark .suggestion-container,
+.theme-dark .popover,
+.theme-dark.is-mobile .prompt,
+.theme-dark .prompt,
+.theme-dark .menu,
+.theme-dark .suggestion-container.mod-search-suggestion {
+    background-color: var(--workspace-background-translucent);
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(10px) saturate(190%) contrast(70%) brightness(80%);
+}

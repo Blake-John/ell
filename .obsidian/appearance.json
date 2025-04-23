@@ -1,0 +1,15 @@
+{
+  "accentColor": "",
+  "cssTheme": "Focus",
+  "theme": "system",
+  "nativeMenus": false,
+  "baseFontSize": 15,
+  "monospaceFontFamily": "",
+  "textFontFamily": "Cambria Math,Times New Roman,Cambria,Comic Sans MS,Consolas,Cascadia Code,Candara,Century Gothic",
+  "enabledCssSnippets": [
+    "MCL Gallery Cards",
+    "MCL Multi Column",
+    "MCL Wide Views",
+    "NoBlur"
+  ]
+}

@@ -1,0 +1,350 @@
+{
+  "version": 2,
+  "projects": [
+    {
+      "fieldConfig": {},
+      "defaultName": "",
+      "templates": [],
+      "excludedNotes": [],
+      "isDefault": false,
+      "dataSource": {
+        "kind": "folder",
+        "config": {
+          "path": "",
+          "recursive": true
+        }
+      },
+      "newNotesFolder": "",
+      "views": [
+        {
+          "config": {
+            "orderFields": [
+              "path",
+              "name",
+              "aliases",
+              "author",
+              "category",
+              "excalidraw-plugin",
+              "rank",
+              "tags"
+            ],
+            "fieldConfig": {
+              "name": {
+                "hide": false
+              },
+              "rank": {
+                "hide": false
+              },
+              "tags": {
+                "hide": false
+              },
+              "File": {
+                "hide": false
+              }
+            }
+          },
+          "filter": {
+            "conditions": []
+          },
+          "colors": {
+            "conditions": []
+          },
+          "sort": {
+            "criteria": [
+              {
+                "field": "path",
+                "order": "asc",
+                "enabled": true
+              }
+            ]
+          },
+          "id": "c452d454-fbba-47f1-891b-dd65984fd3b7",
+          "name": "表格",
+          "type": "table"
+        },
+        {
+          "config": {},
+          "filter": {
+            "conditions": []
+          },
+          "colors": {
+            "conditions": []
+          },
+          "sort": {
+            "criteria": []
+          },
+          "id": "cf5a5256-bfbd-453e-9069-242cea3d2c0a",
+          "name": "日历",
+          "type": "calendar"
+        }
+      ],
+      "id": "906f53aa-7dc0-49be-b9a5-e12195e84e4e",
+      "name": "知识库数据集"
+    },
+    {
+      "fieldConfig": {},
+      "defaultName": "",
+      "templates": [],
+      "excludedNotes": [],
+      "isDefault": false,
+      "dataSource": {
+        "kind": "folder",
+        "config": {
+          "path": "Project/2024SRP",
+          "recursive": true
+        }
+      },
+      "newNotesFolder": "",
+      "views": [
+        {
+          "config": {
+            "fieldConfig": {
+              "rank": {
+                "width": 180
+              }
+            },
+            "orderFields": [
+              "name",
+              "path",
+              "author",
+              "complete",
+              "desc",
+              "due",
+              "rank",
+              "status",
+              "tags",
+              "target"
+            ]
+          },
+          "filter": {
+            "conditions": []
+          },
+          "colors": {
+            "conditions": []
+          },
+          "sort": {
+            "criteria": []
+          },
+          "id": "524e48ba-b547-4835-9725-fae123c9a65c",
+          "name": "表格",
+          "type": "table"
+        },
+        {
+          "config": {
+            "groupByField": "status"
+          },
+          "filter": {
+            "conditions": []
+          },
+          "colors": {
+            "conditions": []
+          },
+          "sort": {
+            "criteria": []
+          },
+          "id": "4a6b0f21-4c6d-4249-9964-b6fe58a18003",
+          "name": "看板",
+          "type": "board"
+        },
+        {
+          "config": {},
+          "filter": {
+            "conditions": []
+          },
+          "colors": {
+            "conditions": []
+          },
+          "sort": {
+            "criteria": []
+          },
+          "id": "1a9b97f9-5c66-470b-95f7-6d38a63cdcd0",
+          "name": "日历",
+          "type": "calendar"
+        },
+        {
+          "config": {},
+          "filter": {
+            "conditions": []
+          },
+          "colors": {
+            "conditions": []
+          },
+          "sort": {
+            "criteria": []
+          },
+          "id": "909814fe-874c-4f25-bdbe-05d40a11cf0b",
+          "name": "画册",
+          "type": "gallery"
+        }
+      ],
+      "id": "8dac9c3d-98a8-4425-9f57-b1ff517a1e4f",
+      "name": "2024SRP"
+    },
+    {
+      "fieldConfig": {},
+      "defaultName": "",
+      "templates": [],
+      "excludedNotes": [],
+      "isDefault": false,
+      "dataSource": {
+        "kind": "folder",
+        "config": {
+          "path": "Project/2025寒假计划",
+          "recursive": true
+        }
+      },
+      "newNotesFolder": "",
+      "views": [
+        {
+          "config": {
+            "fieldConfig": {
+              "path": {
+                "hide": true
+              },
+              "desc": {
+                "width": 456
+              },
+              "author": {
+                "hide": true
+              },
+              "tags": {
+                "width": 280
+              }
+            }
+          },
+          "filter": {
+            "conjunction": "and",
+            "conditions": []
+          },
+          "colors": {
+            "conditions": []
+          },
+          "sort": {
+            "criteria": []
+          },
+          "id": "569aaa15-16df-461b-83d2-cc32edaedc6e",
+          "name": "表格",
+          "type": "table"
+        }
+      ],
+      "id": "7b6c7590-7d4d-4da8-a7a9-c7b5fd7c8c23",
+      "name": "2025寒假计划"
+    },
+    {
+      "fieldConfig": {
+        "status": {
+          "options": [
+            "阶段安排",
+            "学习笔记"
+          ]
+        }
+      },
+      "defaultName": "",
+      "templates": [],
+      "excludedNotes": [],
+      "isDefault": true,
+      "dataSource": {
+        "kind": "folder",
+        "config": {
+          "path": "Project/2025SRP",
+          "recursive": true
+        }
+      },
+      "newNotesFolder": "",
+      "views": [
+        {
+          "config": {
+            "includeFields": [],
+            "headerField": "name",
+            "groupByField": "status",
+            "columns": {
+              "会议及讨论": {
+                "weight": 0,
+                "records": [
+                  "Project/2025SRP/meetings/第一次会议.md",
+                  "Project/2025SRP/meetings/第一次讨论.md"
+                ]
+              },
+              "阶段安排": {
+                "weight": 1,
+                "records": [
+                  "Project/2025SRP/SRP阶段安排.md",
+                  "Project/2025SRP/tasks/第一阶段.md",
+                  "Project/2025SRP/tasks/第二阶段.md"
+                ]
+              },
+              "学习笔记": {
+                "weight": 2,
+                "records": [
+                  "Project/2025SRP/tasks/凯库勒式.md",
+                  "Project/2025SRP/tasks/碳碳原子，碳氢原子成键方式.md"
+                ]
+              }
+            }
+          },
+          "filter": {
+            "conjunction": "and",
+            "conditions": []
+          },
+          "colors": {
+            "conditions": []
+          },
+          "sort": {
+            "criteria": []
+          },
+          "id": "32ba51e4-2e21-4ff7-8b6a-e6b9c52a227f",
+          "name": "看板",
+          "type": "board"
+        },
+        {
+          "config": {},
+          "filter": {
+            "conjunction": "and",
+            "conditions": []
+          },
+          "colors": {
+            "conditions": []
+          },
+          "sort": {
+            "criteria": []
+          },
+          "id": "ad78fbc1-b8bf-4709-8108-57b505caa565",
+          "name": "表格",
+          "type": "table"
+        },
+        {
+          "config": {
+            "interval": "month"
+          },
+          "filter": {
+            "conjunction": "and",
+            "conditions": []
+          },
+          "colors": {
+            "conditions": []
+          },
+          "sort": {
+            "criteria": []
+          },
+          "id": "983725fd-11f1-485e-98dc-70cee8e29104",
+          "name": "日历",
+          "type": "calendar"
+        }
+      ],
+      "id": "5cb33d5a-d116-4bc4-a409-e71c67c36f0b",
+      "name": "2025SRP"
+    }
+  ],
+  "archives": [],
+  "preferences": {
+    "projectSizeLimit": 1000,
+    "frontmatter": {
+      "quoteStrings": "PLAIN"
+    },
+    "locale": {
+      "firstDayOfWeek": "default"
+    },
+    "commands": [],
+    "linkBehavior": "open-editor"
+  }
+}

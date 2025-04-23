@@ -1,0 +1,254 @@
+{
+  "model": {
+    "columns": [
+      {
+        "id": "90f1149d-86ef-47d7-8981-35679a598ce9",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "140px",
+        "type": "text",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "Todo",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [],
+        "calculationType": "none",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null,
+        "multiTagSortDir": "default"
+      },
+      {
+        "id": "c7c37cd8-2160-49da-8158-cfaf23d2db24",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "267px",
+        "type": "text",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "Desc",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [],
+        "calculationType": "none",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null,
+        "multiTagSortDir": "default"
+      },
+      {
+        "id": "0a7f3adf-52d8-4c5e-a22a-98d1090caef0",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "140px",
+        "type": "tag",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "Status",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [
+          {
+            "id": "339f548f-d3ae-4b3b-b4c0-a15cba793c84",
+            "content": "Todo",
+            "color": "brown"
+          }
+        ],
+        "calculationType": "none",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null,
+        "multiTagSortDir": "default"
+      },
+      {
+        "id": "a7ac4821-ca25-43f3-bb47-e877ca1e45b1",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "140px",
+        "type": "checkbox",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "Completed",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [],
+        "calculationType": "none",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null,
+        "multiTagSortDir": "default"
+      }
+    ],
+    "rows": [
+      {
+        "id": "b021c13e-175f-4647-8556-4378b3cb56bf",
+        "index": 0,
+        "sourceId": null,
+        "creationDateTime": "2025-01-12T06:46:10.783Z",
+        "lastEditedDateTime": "2025-01-12T07:06:34.554Z",
+        "cells": [
+          {
+            "id": "afb7f3c4-7e63-49e4-846d-4c9350e443bc",
+            "columnId": "90f1149d-86ef-47d7-8981-35679a598ce9",
+            "content": "[学习Docker](Project/2025寒假计划/学习Docker)",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "383f59f9-7e7f-449a-9881-2dd785a5808b",
+            "columnId": "c7c37cd8-2160-49da-8158-cfaf23d2db24",
+            "content": "系统地学习 **Docker** ，为智能车队备赛做准备",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "fca823be-9f8d-4306-90b1-945b5a20a8db",
+            "columnId": "0a7f3adf-52d8-4c5e-a22a-98d1090caef0",
+            "tagId": "339f548f-d3ae-4b3b-b4c0-a15cba793c84",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "63a5fefa-fb73-420a-bc82-fb535c1688f6",
+            "columnId": "a7ac4821-ca25-43f3-bb47-e877ca1e45b1",
+            "value": false,
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "c30c4a88-0923-4f1a-b2e9-193493e4ec19",
+        "index": 1,
+        "sourceId": null,
+        "creationDateTime": "2025-01-12T06:49:34.811Z",
+        "lastEditedDateTime": "2025-01-12T07:06:40.897Z",
+        "cells": [
+          {
+            "id": "e1056aaa-2dff-4f6f-be86-4639ba1fa742",
+            "columnId": "90f1149d-86ef-47d7-8981-35679a598ce9",
+            "content": "[预习新知](预习新知.md)",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "79f550c7-a562-4f25-8ab9-5689d58d6a10",
+            "columnId": "c7c37cd8-2160-49da-8158-cfaf23d2db24",
+            "content": "预习下个学习的知识，特别是 **计算物理** ， **电动力学** ， **信号与系统**",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "ce37b38b-0223-4cb1-993c-7bf7a869c332",
+            "columnId": "0a7f3adf-52d8-4c5e-a22a-98d1090caef0",
+            "tagId": "339f548f-d3ae-4b3b-b4c0-a15cba793c84",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "b9f11654-53d1-4c30-a977-efa46e4b40ef",
+            "columnId": "a7ac4821-ca25-43f3-bb47-e877ca1e45b1",
+            "value": false,
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "a3b7ae74-940b-45ae-9564-54adcd843429",
+        "index": 2,
+        "sourceId": null,
+        "creationDateTime": "2025-01-12T06:49:53.584Z",
+        "lastEditedDateTime": "2025-01-12T07:06:41.984Z",
+        "cells": [
+          {
+            "id": "e1ba4bc9-fd02-4998-8c39-67c1299a3510",
+            "columnId": "90f1149d-86ef-47d7-8981-35679a598ce9",
+            "content": "[复习旧知](复习旧知.md)",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "dfab604f-ced1-4d36-9f8c-9e62cc65867b",
+            "columnId": "c7c37cd8-2160-49da-8158-cfaf23d2db24",
+            "content": "重新回顾 **理论力学** ， **复变函数** ， **电路**",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "1a5cd5b6-ebc1-4347-bf2a-0e62e68af8a2",
+            "columnId": "0a7f3adf-52d8-4c5e-a22a-98d1090caef0",
+            "tagId": "339f548f-d3ae-4b3b-b4c0-a15cba793c84",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "0c9cae90-5786-42c0-8061-ca18cc20698a",
+            "columnId": "a7ac4821-ca25-43f3-bb47-e877ca1e45b1",
+            "value": false,
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "e01273f0-96f3-4730-a240-cad8f84b729b",
+        "index": 3,
+        "sourceId": null,
+        "creationDateTime": "2025-01-12T06:50:03.328Z",
+        "lastEditedDateTime": "2025-01-12T07:06:43.338Z",
+        "cells": [
+          {
+            "id": "3ec380f7-66dd-48b7-b299-d9f0fcb62aeb",
+            "columnId": "90f1149d-86ef-47d7-8981-35679a598ce9",
+            "content": "[CUPT题目](CUPT题目.md)",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "e17eb368-5aac-4bf2-96d3-6b6c335db3eb",
+            "columnId": "c7c37cd8-2160-49da-8158-cfaf23d2db24",
+            "content": "完成一道 CPUT 的题目",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "84d74666-4adc-4dec-b2a6-e940dd0f1574",
+            "columnId": "0a7f3adf-52d8-4c5e-a22a-98d1090caef0",
+            "tagId": "339f548f-d3ae-4b3b-b4c0-a15cba793c84",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "b85328e7-e7eb-4edb-b7a5-20d8f7b3c12f",
+            "columnId": "a7ac4821-ca25-43f3-bb47-e877ca1e45b1",
+            "value": false,
+            "hasValidFrontmatter": null
+          }
+        ]
+      }
+    ],
+    "filters": [],
+    "sources": [],
+    "settings": {
+      "numFrozenColumns": 1,
+      "showCalculationRow": true
+    },
+    "externalRowOrder": []
+  },
+  "pluginVersion": "8.16.1"
+}

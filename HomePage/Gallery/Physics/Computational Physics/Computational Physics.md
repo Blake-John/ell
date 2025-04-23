@@ -1,0 +1,6 @@
+- Octave
+	- [[../../../../Physics/Computational Physics/Octave/Cell|Cell]] 
+	- [[../../../../Physics/Computational Physics/Octave/Function|Function]] 
+	- [[../../../../Physics/Computational Physics/Octave/Matric Manipulate|Matric Manipulate]] 
+	- [[../../../../Physics/Computational Physics/Octave/Plot|Plot]] 
+	- [[../../../../Physics/Computational Physics/Octave/Problem Sets|Problem Sets]] 

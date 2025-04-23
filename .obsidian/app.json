@@ -1,0 +1,23 @@
+{
+  "trashOption": "local",
+  "newFileLocation": "current",
+  "strictLineBreaks": false,
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": "./imgs",
+  "showUnsupportedFiles": true,
+  "showLineNumber": false,
+  "spellcheck": false,
+  "useMarkdownLinks": false,
+  "newLinkFormat": "relative",
+  "vimMode": false,
+  "propertiesInDocument": "hidden",
+  "pdfExportSettings": {
+    "includeName": true,
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  },
+  "promptDelete": false,
+  "readableLineLength": true
+}
