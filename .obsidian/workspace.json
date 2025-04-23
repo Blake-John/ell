@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer/04 Git/Git.md",
+                "file": "Physics/Computational Physics/Octave/Problem Sets.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Git"
+              "title": "Problem Sets"
             }
           }
         ]
@@ -63,7 +63,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "ampere",
+                "query": "tag:#bug",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -84,7 +84,8 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -197,6 +198,13 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "obsidian-projects:打开项目": false,
+      "pdf-plus:PDF++: Toggle auto-focus": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false,
+      "notion-like-tables:Create loom": false,
+      "obsidian-kanban:创建新看板": false,
+      "obsidian-regex-pipeline:Regex Rulesets": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -205,18 +213,13 @@
       "command-palette:打开命令面板": false,
       "workspaces:管理工作区布局": false,
       "audio-recorder:开始/结束录音": false,
-      "random-note:开始漫游笔记": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false,
-      "obsidian-projects:打开项目": false,
-      "pdf-plus:PDF++: Toggle auto-focus": false,
-      "pdf-plus:PDF++: Toggle auto-paste": false,
-      "notion-like-tables:Create loom": false,
-      "obsidian-kanban:创建新看板": false,
-      "obsidian-regex-pipeline:Regex Rulesets": false
+      "random-note:开始漫游笔记": false
     }
   },
   "active": "d4431705b08a60e4",
   "lastOpenFiles": [
+    "Physics/Computational Physics/Octave/Problem Sets.md",
+    "Computer/04 Git/Git.md",
     "Physics/Electrodynamics/notes/07 Electrodynamics/7.2 Electromagnetic Induction.md",
     "Computer/03 Linux/Problems Set.md",
     "Physics/Electrodynamics/notes/07 Electrodynamics/imgs/two_loop.png",
@@ -229,7 +232,6 @@
     "Physics/Electrodynamics/notes/07 Electrodynamics/7.1 Electromotive Force.md",
     "Physics/Electrodynamics/notes/07 Electrodynamics/imgs/磁生电实验.png",
     "Physics/Electrodynamics/notes/03 Potentials/3.3 Separation of Variables.md",
-    "Physics/Computational Physics/Octave/Problem Sets.md",
     "Physics/Electrodynamics/notes/03 Potentials/3.1 Laplace's Equation.md",
     "Physics/Electrodynamics/notes/03 Potentials/3.2 The Method of Images.md",
     "Physics/Electrodynamics/notes/03 Potentials/3.2 The Method of Images.sync-conflict-20250406-232146-5ZKM3EL.md",

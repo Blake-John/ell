@@ -98,10 +98,77 @@ endfunction
 
 # 03 Matlab
 
-## 3.1 Linux 上界面太小 #solved 
+## 3.0 Runtime Error
+#bug #solved 
+
+在安装 MATLAB 的时候可能会遇到无法打开安装界面，出现 `runtime_error` 的情况：
+
+```test
+terminate called after throwing an instance of 'std::runtime_error' 
+what(): Unable to launch the MATLABWindow application Aborted
+./bin/glnxa64/MATLABWindow: /home/eric1/Downloads/matlab_R2024a_Linux/bin/glnxa64/libstdc++.so.6: version `GLIBCXX_3.4.29' not found (required by /lib/x86_64-linux-gnu/libgallium-24.2.1 - kisak-mesa PPA.so)
+```
+
+首先我们需要检查依赖是否安装好：
+
+```test
+alsa-lib.x86_64 cairo.x86_64 cairo-gobject.x86_64 cups-libs.x86_64 gdk-pixbuf2.x86_64 glib2.x86_64 glibc.x86_64 glibc-langpack-en.x86_64 glibc-locale-source.x86_64 gtk3.x86_64 libICE.x86_64 libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXfixes.x86_64 libXft.x86_64 libXinerama.x86_64 libXrandr.x86_64 libXt.x86_64 libXtst.x86_64 libXxf86vm.x86_64 libcap.x86_64 libdrm.x86_64 libglvnd-glx.x86_64 libsndfile.x86_64 libtool-ltdl.x86_64 libuuid.x86_64 libwayland-client.x86_64 make.x86_64 mesa-libgbm.x86_64 net-tools.x86_64 nspr.x86_64 nss.x86_64 nss-util.x86_64 pam.x86_64 pango.x86_64 procps-ng.x86_64 sudo.x86_64 unzip.x86_64 which.x86_64 zlib.x86_64
+```
+
+其次是因为 MATLAB 自带的 `libstdc++` 无法满足使用条件，我们需要使用系统的库：
+
+```bash
+mkdir <Matlab_Source>/bin/glnxa64/exclude
+mkdir <Matlab_Source>/sys/os/glnxa64/exclude
+mv <Matlab_Source>/bin/glnxa64/libstdc++* ./bin/glnxa64/exclude
+mv <Matlab_Source>/sys/os/glnxa64/libstdc++* ./sys/os/glnxa64/exclude
+```
+
+## 3.1 Linux 上界面太小 
+#solved 
 
 我们只需要调节 Matlab 的缩放即可 : 
 
 ```Matlab
 s = settings; s.matlab.desktop.DisplayScaleFactor; s.matlab.desktop.DisplayScaleFactor.PersonalValue = 2.0;
 ```
+
+## 3.2 com.jogamp.opengl.GLException 
+#bug #solved 
+
+当我们使用matlab的时候可能出现以下问题：
+
+```text
+com.jogamp.opengl.GLException: X11GLXDrawableFactory - Could not initialize shared resources for X11GraphicsDevice[type .x11, connection :1, unitID 0, handle 0x0, owner false, ResourceToolkitLock[obj 0x6b5989d6, isOwner false, <652fa7d3, 293db4b8>[count 0, qsz 0, owner <NULL>]]]
+	at jogamp.opengl.x11.glx.X11GLXDrawableFactory$SharedResourceImplementation.createSharedResource(X11GLXDrawableFactory.java:326)
+	at jogamp.opengl.SharedResourceRunner.run(SharedResourceRunner.java:297)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.NullPointerException
+	at jogamp.opengl.GLContextImpl.makeCurrent(GLContextImpl.java:688)
+	at jogamp.opengl.GLContextImpl.makeCurrent(GLContextImpl.java:580)
+	at jogamp.opengl.x11.glx.X11GLXDrawableFactory$SharedResourceImplementation.createSharedResource(X11GLXDrawableFactory.java:297)
+	... 2 more
+```
+
+这个是因为安装的版本无法使用硬件加速，我们只需要选择使用软件加速即可：
+
+```matlab
+opengl('save', 'software')
+```
+
+## 3.3 Unable to Open Files
+#bug #solved 
+
+当我们想要打开 `.m` 文件的时候，可能会遇到提示：
+
+```text
+unable to open this file in the current system configuration
+```
+
+这与安装的时候遇到的 `runtime_error` 是同一个问题，我们需要将 matlab 自带的 `libstdc++` 删掉，使用系统的库：
+
+```bash
+sudo mkdir /usr/local/MATLAB/R2024a/sys/os/glnxa64/exclude
+sudo mv /usr/local/MATLAB/R2024a/sys/os/glnxa64/libstdc++* /usr/local/MATLAB/R2024a/sys/os/glnxa64/exclude
+```
+
