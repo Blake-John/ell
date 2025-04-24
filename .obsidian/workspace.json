@@ -84,8 +84,7 @@
               "title": "书签"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -198,13 +197,6 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "obsidian-excalidraw-plugin:新建绘图文件": false,
-      "obsidian-projects:打开项目": false,
-      "pdf-plus:PDF++: Toggle auto-focus": false,
-      "pdf-plus:PDF++: Toggle auto-paste": false,
-      "notion-like-tables:Create loom": false,
-      "obsidian-kanban:创建新看板": false,
-      "obsidian-regex-pipeline:Regex Rulesets": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -213,10 +205,17 @@
       "command-palette:打开命令面板": false,
       "workspaces:管理工作区布局": false,
       "audio-recorder:开始/结束录音": false,
-      "random-note:开始漫游笔记": false
+      "random-note:开始漫游笔记": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "obsidian-projects:打开项目": false,
+      "pdf-plus:PDF++: Toggle auto-focus": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false,
+      "notion-like-tables:Create loom": false,
+      "obsidian-kanban:创建新看板": false,
+      "obsidian-regex-pipeline:Regex Rulesets": false
     }
   },
-  "active": "d4431705b08a60e4",
+  "active": "833431ade1f0fc76",
   "lastOpenFiles": [
     "Physics/Computational Physics/Octave/Problem Sets.md",
     "Computer/04 Git/Git.md",
