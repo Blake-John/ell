@@ -303,6 +303,10 @@ yay -S fcitx5-input-support
 
 下载完 rime 引擎后，我们选择使用 `rime-frost` 作为我们的输入法。我们到 [GitHub - gaboolic/rime-frost: 白霜拼音](https://github.com/gaboolic/rime-frost) 上将仓库克隆到 `~/.local/share/fcitx5/rime` 下，即可完成配置。
 
+```bash
+git clone --depth 1 https://github.com/gaboolic/rime-frost ~/.local/share/fcitx5/rime
+```
+
 ## 3.2 截屏录屏
 
 > 在使用截屏录屏之前，确保 `pipewire` 能够正常运行
