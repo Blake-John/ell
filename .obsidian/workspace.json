@@ -4,16 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "09412f990db9a9af",
+        "id": "e6be1a37a4e1ce92",
         "type": "tabs",
+        "dimension": 36.25766871165644,
         "children": [
           {
-            "id": "d4431705b08a60e4",
+            "id": "ac34171fa4ae3424",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer/03 Linux/Arch/Hyprland/03 终端.md",
+                "file": "Physics/Electrodynamics/notes/04 Electric Fields in Matter/4.2 The Field of a Polarized Object.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,10 +29,46 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "03 终端"
+              "title": "4.2 The Field of a Polarized Object"
             }
           }
         ]
+      },
+      {
+        "id": "c61616582785827c",
+        "type": "tabs",
+        "dimension": 63.74233128834356,
+        "children": [
+          {
+            "id": "e7e2eb3241111fab",
+            "type": "leaf",
+            "state": {
+              "type": "webviewer",
+              "state": {
+                "url": "https://www.doubao.com/chat/drive/1537586791388930",
+                "title": "豆包 - 字节跳动旗下 AI 智能助手",
+                "mode": "webview"
+              },
+              "icon": "globe-2",
+              "title": "豆包 - 字节跳动旗下 AI 智能助手"
+            }
+          },
+          {
+            "id": "8d17246bcf9ad54e",
+            "type": "leaf",
+            "state": {
+              "type": "webviewer",
+              "state": {
+                "url": "https://www.doubao.com/chat/2400946848630018",
+                "title": "总结电介质中的电场文档 - 豆包",
+                "mode": "webview"
+              },
+              "icon": "globe-2",
+              "title": "总结电介质中的电场文档 - 豆包"
+            }
+          }
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -63,7 +100,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#bug",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -88,7 +125,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 237.5
+    "width": 237.5,
+    "collapsed": true
   },
   "right": {
     "id": "5c0d6b931c5b5cd2",
@@ -215,13 +253,17 @@
       "obsidian-regex-pipeline:Regex Rulesets": false
     }
   },
-  "active": "d4431705b08a60e4",
+  "active": "ac34171fa4ae3424",
   "lastOpenFiles": [
+    "Physics/Electrodynamics/notes/04 Electric Fields in Matter/4.2 The Field of a Polarized Object.md",
+    "Physics/Electrodynamics/notes/04 Electric Fields in Matter/4.1 Polarization.md",
+    "Physics/Electrodynamics/notes/04 Electric Fields in Matter/imgs/multidipole.png",
+    "Computer/15 Docker/02 Docker 安装.md",
+    "Computer/03 Linux/Arch/Hyprland/03 终端.md",
     "Computer/03 Linux/Arch/Hyprland/04 waybar.md",
     "Computer/03 Linux/Arch/Hyprland/05 Swaync.md",
     "Computer/03 Linux/Arch/Hyprland/Rofi.md",
     "Computer/03 Linux/Arch/Hyprland/05 组件.md",
-    "Computer/03 Linux/Arch/Hyprland/03 终端.md",
     "Computer/03 Linux/Arch/Hyprland/02 配置Hyprland.md",
     "Computer/03 Linux/Arch/Hyprland/01 安装Hyprland.md",
     "Physics/Computational Physics/Octave/Problem Sets.md",
@@ -234,7 +276,6 @@
     "Physics/Electrodynamics/notes/07 Electrodynamics/imgs/exp7.6.png",
     "Physics/Electrodynamics/notes/07 Electrodynamics/imgs/Pasted image 20250423090727.png",
     "Physics/Electrodynamics/notes/07 Electrodynamics/imgs/exp7.7.png",
-    "Physics/Electrodynamics/notes/04 Electric Fields in Matter/4.2 The Field of a Polarized Object.md",
     "Physics/Electrodynamics/notes/07 Electrodynamics/7.1 Electromotive Force.md",
     "Physics/Electrodynamics/notes/07 Electrodynamics/imgs/磁生电实验.png",
     "Physics/Electrodynamics/notes/03 Potentials/3.3 Separation of Variables.md",
@@ -252,15 +293,12 @@
     "Physics/Computational Physics/Octave/Plot.md",
     "Project/2025SRP/tasks/第二阶段.sync-conflict-20250413-225638-4A4GDDM.md",
     "Project/2025SRP/tasks/第二阶段.md",
-    "Project/2025SRP/meetings/第一次讨论.md",
-    "Project/2025SRP/meetings/第一次讨论.sync-conflict-20250413-225638-4A4GDDM.md",
     "Physics/Computational Physics/Octave/~syncthing~Problem Sets.md.tmp",
     "Computer/03 Linux/~syncthing~Problems Set.md.tmp",
     "Computer/03 Linux/imgs/red_link_error.png",
     "Computer/03 Linux/imgs/~syncthing~red_link_error.png.tmp",
     "Computer/08 ROS/ROS2/~syncthing~6.Writing a simple publisher and subsrciber.md.tmp",
     "Computer/03 Linux/imgs",
-    "Physics/Electrodynamics/notes/03 Potentials/imgs/exp3.4_solu.png",
     "Physics/Electrodynamics/notes/05 Magnetostatics/imgs",
     "Physics/Electrodynamics/notes/05 Magnetostatics",
     "Physics/Electrodynamics/notes/01 Vector Analysis/Vector Analysis.canvas",

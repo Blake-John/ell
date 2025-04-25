@@ -107,7 +107,7 @@ sudo mkdir -p /etc/docker
 
 2. 编辑 `/etc/docker/daemon.json` 
 
-```nvim
+```json
 {
 	"registry-mirrors": [ "https://registry.docker-cn.com" ]
 }
