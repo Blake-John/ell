@@ -1,5 +1,6 @@
 {
   "openExternalURLs": true,
   "enableAdblocking": true,
-  "searchEngine": "bing"
+  "searchEngine": "custom",
+  "customSearchEngine": "https://cn.bing.com/search?&q=%s"
 }
