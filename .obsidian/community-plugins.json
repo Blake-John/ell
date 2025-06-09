@@ -14,5 +14,7 @@
   "obsidian-latex-suite",
   "highlightr-plugin",
   "obsidian-kanban",
-  "obsidian-regex-pipeline"
+  "obsidian-regex-pipeline",
+  "better-mathjax",
+  "editing-toolbar"
 ]
