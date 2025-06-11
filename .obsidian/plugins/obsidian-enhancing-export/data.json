@@ -1,0 +1,63 @@
+{
+  "items": [
+    {
+      "name": "Markdown",
+      "customArguments": ""
+    },
+    {
+      "name": "Markdown (Hugo)"
+    },
+    {
+      "name": "Html"
+    },
+    {
+      "name": "TextBundle"
+    },
+    {
+      "name": "Typst"
+    },
+    {
+      "name": "PDF",
+      "customArguments": "--pdf-engine=xelatex -V CJKmainfont=\"Microsoft YaHei\" -V colorlinks -V author=\"Blake John\" -V geometry=\"top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm\""
+    },
+    {
+      "name": "Word (.docx)"
+    },
+    {
+      "name": "OpenOffice"
+    },
+    {
+      "name": "RTF"
+    },
+    {
+      "name": "Epub"
+    },
+    {
+      "name": "Latex"
+    },
+    {
+      "name": "Media Wiki"
+    },
+    {
+      "name": "reStructuredText"
+    },
+    {
+      "name": "Textile"
+    },
+    {
+      "name": "OPML"
+    },
+    {
+      "name": "Bibliography"
+    }
+  ],
+  "defaultExportDirectoryMode": "Auto",
+  "openExportedFile": true,
+  "env": {},
+  "showExportProgressBar": true,
+  "lastExportDirectory": {
+    "win32": "D:\\Documents"
+  },
+  "lastEditName": "PDF",
+  "lastExportType": "PDF"
+}
