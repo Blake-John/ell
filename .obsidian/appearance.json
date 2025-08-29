@@ -4,7 +4,7 @@
   "theme": "system",
   "nativeMenus": false,
   "baseFontSize": 15,
-  "monospaceFontFamily": "",
+  "monospaceFontFamily": "Consolas",
   "textFontFamily": "Cambria Math,Comic Sans MS,Cascadia Code,Consolas,Cambria,Arial,Times New Roman,Candara,Century Gothic",
   "enabledCssSnippets": [
     "MCL Gallery Cards",
