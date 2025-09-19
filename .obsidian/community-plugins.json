@@ -15,5 +15,6 @@
   "better-mathjax",
   "obsidian-pandoc",
   "obsidian-enhancing-export",
-  "better-export-pdf"
+  "better-export-pdf",
+  "obsidian-annotator"
 ]
