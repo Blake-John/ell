@@ -94,20 +94,20 @@ git commit
 * 每次提交都需要写一个提交信息
 
 ```bash
-	git commit
-	# 进入编辑器内部对提交说明文件进行编辑
+git commit
+# 进入编辑器内部对提交说明文件进行编辑
 
-	git commit -m [说明内容]
-	# 可以直接将说明内容写入文件，比较简洁
+git commit -m [说明内容]
+# 可以直接将说明内容写入文件，比较简洁
 
-	git commit -a
-	# 可以直接提交修改后或删除后但未添加到暂存的文件
-	# 但是从未被跟踪的文件不会被提交
+git commit -a
+# 可以直接提交修改后或删除后但未添加到暂存的文件
+# 但是从未被跟踪的文件不会被提交
 
-	git commit --amend
-	# 当你提交了代码，之后又有新的改动，不想重新创建一个commit，就可以用`--amend`将新的内容提交到上一次commit中
-	git commit --allow-empty
-	# `--allow-empty`允许提交时说明为空
+git commit --amend
+# 当你提交了代码，之后又有新的改动，不想重新创建一个commit，就可以用`--amend`将新的内容提交到上一次commit中
+git commit --allow-empty
+# `--allow-empty`允许提交时说明为空
 ```
 
 ```ad-attention
