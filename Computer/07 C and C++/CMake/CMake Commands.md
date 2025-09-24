@@ -33,7 +33,7 @@ set (<variable_name> <value> CACHE <type> [discription] [FORCE])
 unset (<variable_name> CACHE)
 ```
 
-## 4. `include_directories ()` 
+# 4. `include_directories ()` 
 
 向工程添加多个特定的头文件路径
 
@@ -41,7 +41,7 @@ unset (<variable_name> CACHE)
 include_directories (<path>)
 ```
 
-## 5. `link_directories ()` 
+# 5. `link_directories ()` 
 
 向工程添加多个特定的库文件路径
 
@@ -49,7 +49,7 @@ include_directories (<path>)
 link_directories (<path>)
 ```
 
-## 6. `add_library ()` 
+# 6. `add_library ()` 
 
 [构建库文件](06%20Build.md#02%20库文件的构建) 
 
@@ -57,7 +57,7 @@ link_directories (<path>)
 add_library (<lib_name> [SHARED|STATIC|MOUDLE] <source>)
 ```
 
-## 7. `add_compile_options ()` 
+# 7. `add_compile_options ()` 
 
 添加编译参数
 
@@ -66,7 +66,7 @@ add_compile_options (<option>)
 add_compile_options (-Wall -std=c++11 -O2)
 ```
 
-## 8. `add_executable ()` 
+# 8. `add_executable ()` 
 
 [构建可执行文件](06%20Build.md#01%20可执行文件的构建) 
 
@@ -74,7 +74,7 @@ add_compile_options (-Wall -std=c++11 -O2)
 add_executable (<exe_name> <source>)
 ```
 
-## 9. `target_link_libraries ()`
+# 9. `target_link_libraries ()`
 
 [为target添加需要链接的库](04%20Write%20CMakeLists.md#3.2%20链接可执行文件和目标库) 
 
@@ -82,7 +82,7 @@ add_executable (<exe_name> <source>)
 target_link_libraries (<target> <lib>)
 ```
 
-## 10. `target_include_directories ()` 
+# 10. `target_include_directories ()` 
 
 [为target添加头文件路径](04%20Write%20CMakeLists.md#3.1%20生成目标库) 
 
@@ -90,7 +90,7 @@ target_link_libraries (<target> <lib>)
 target_include_directories (<target> <PUBLIC|PRIVATE|INTERFACE> <path>)
 ```
 
-## 11. `add_subdirectory ()`
+# 11. `add_subdirectory ()`
 
 向CMake项目中添加子模块
 
@@ -101,7 +101,7 @@ add_subdirectory (<path>)
 > 注意：
 > 子模块中必须包含 `CMakeLists.txt` 文件
 
-## 12. `aux_source_directory ()` 
+# 12. `aux_source_directory ()` 
 
 发现一个目录下所有源代码文件并将其存储在一个变量中
 
@@ -112,7 +112,7 @@ aux_source_directory (. SRC)
 add_executable (main ${SRC})
 ```
 
-## 13. `message ()` 
+# 13. `message ()` 
 
 在配置 `CMake` 项目时向终端输出信息。
 

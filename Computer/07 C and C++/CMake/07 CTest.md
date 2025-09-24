@@ -213,31 +213,94 @@ set_tests_properties(MyTest PROPERTIES PASS_REGULAR_EXPRESSION "expected output"
 
 # 06 实战示例
 
-## 6.1 环境配置
+## 6.1 Self Test
 
-在进入CTest的具体实践之前，环境配置是一个必不可少的步骤。一个合理配置的环境是进行有效测试的基础，正如心理学家Abraham Maslow在《人类动机论》中所说：“为了达到更高层次的成就，人首先需要满足其基本需求。” 这在软件开发的世界里同样适用，一个良好的开始是成功的一半。
+### 6.1.1 编写测试
 
-CTest作为一个测试框架，其配置环境包括编译器、CTest软件及相关依赖库。以下是详细的配置步骤和技术要点：
+以下是项目结构：
 
-### 6.1.1 安装编译器
+```Plain
+hello_test/
+├── CMakeLists.txt
+├── src
+│   └── math.cpp
+├── include
+│   └── math.h
+└── tests
+    └── test_add.cpp
+```
 
-首先，我们需要安装一个合适的C/C++编译器。在此我们推荐使用GCC（GNU Compiler Collection，GNU编译器套件）或Clang。选择GCC而不是其他编译器的原因在于它的广泛支持和成熟稳定。GCC不仅支持多种操作系统，而且拥有强大的社区和丰富的文档资源。
+1. 项目源码
 
-### 6.1.2 安装CTest和CMake
+```C++
+// src/math.h
+#pragma once
+int add(int a, int b);
 
-CTest是CMake的测试工具，因此安装CMake是必要的步骤。CMake（跨平台安装程序）是一个开源的、跨平台的自动化构建系统，它使用一个名为CMakeLists.txt的配置文件来描述构建过程。选择CMake而不是其他构建系统的理由在于其高度的灵活性和广泛的适用性。
+// src/math.cpp
+#include "math.h"
+int add(int a, int b) { return a + b; }
+```
 
-安装CMake后，你将自动获得CTest。在使用CTest之前，强烈建议阅读其官方文档，以了解其基本概念和操作方法。如哲学家孔子所言：“知之为知之，不知为不知，是知也。”对工具的深入了解将使你在后续的使用过程中更加得心应手。
+```C++
+// tests/test_add.cpp
+#include "math.h"
+#include <iostream>
+int main() {
+    if (add(2, 3) == 5) {
+        std::cout << "✔ 2+3=5\n";
+        return 0;
+    }
+    std::cerr << "✘ 2+3!=5\n";
+    return 1;   // 非 0 表示失败
+}
+```
 
-### 6.1.3 配置测试环境
+2. CMakeLists.txt
 
-配置测试环境涉及到设置环境变量、选择和配置测试框架等。在配置过程中，务必 **确保所有的路径和变量设置正确**，这样才能保证CTest能够正确地找到和执行你的测试用例。在这一环节中，细节是至关重要的。正如法国哲学家伏尔泰所说：“细节决定成败。”
+```cmake
+cmake_minimum_required(VERSION 3.14)
+project(HelloTest CXX)
 
-通过以上步骤，你的测试环境应该已经配置妥当。接下来的章节，我们将进入具体的测试案例编写和执行。
+# 打开测试模块
+enable_testing()          # 也可用 include(CTest)
 
-通过细腻而精确的环境配置步骤，不仅展现了技术的严谨性，也体现了对读者的深度关怀，确保每一位读者都能在一个良好的起点上开始他们的CTest之旅。
+# 被测库
+add_library(math STATIC src/math.cpp)
+target_include_directories(math PUBLIC include)
 
-## 6.2 编写与执行测试用例
+# 测试可执行文件
+add_executable(test_add tests/test_add.cpp)
+target_link_libraries(test_add PRIVATE math)
+
+# 注册测试（名字可随意）
+add_test(NAME add_2_3 COMMAND test_add)
+```
+
+### 4.1.2 运行测试
+
+```Bash
+# 1. 生成构建树
+cmake -B build -S . -DCMAKE_BUILD_TYPE=Debug
+
+# 2. 编译
+cmake --build build
+
+# 3. 运行所有测试
+ctest --test-dir build --output-on-failure
+```
+
+其输出如下：
+
+```Plain
+Test project .../hello_test/build
+    Start 1: add_2_3
+1/1 Test #1: add_2_3 ..........................   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 1
+```
+
+## 6.2 编写与执行测试用例 —— Google Test
 
 环境配置完成后，我们即可进入CTest的核心环节——编写与执行测试用例。如同雕刻家在精心选择石料后开始雕琢他的作品，一个程序员也需要在良好的测试环境中精心编写和执行测试用例。正如哲学家亚里士多德所言：“我们是我们反复做的事情。因此，卓越不是一个行为，而是一个习惯。” 在软件测试领域，精心设计和执行测试用例是追求卓越的重要途径。
 

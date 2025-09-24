@@ -45,13 +45,23 @@ touch ./venv/COLCON_IGNORE
 python3 -m pip install gtsam pyserial
 ```
 
-最后编译并运行
+最后编译
 
 ```bash
 # Source Humble and build
 source /opt/ros/humble/setup.bash
 colcon build
 ```
+
+当我们需要运行的时候，我们只需要设置一个环境变量即可：
+
+```Bash
+export PYTHON_LIBRARY_PATH=./venv/Lib/site-packages/:$PYTHON_LIBRARY_PATH
+```
+
+**注意：**
+
+不同系统的 PYTHON 包位置不一样，但是我们只需要将 `**/site-packages/` 导入即可
 
 ## 3.2 conda #bug 
 
