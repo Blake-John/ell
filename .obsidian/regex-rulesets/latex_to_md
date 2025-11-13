@@ -5,3 +5,5 @@
 "\\epsilon"->"\varepsilon"
 "\\frac"->"\dfrac"
 ","->"，"
+"\\Xi"->"\varXi"
+"\\quad \((.*)\)"->"\tag{$1}"
