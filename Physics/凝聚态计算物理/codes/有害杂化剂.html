@@ -1,0 +1,508 @@
+<html>
+<body style="width: 100%; height: 100%">
+<div data-v-2158f109="" data-v-3eb64bd8="" data-v-bf91686c-s="" class="html" style="width: 100%; max-width: 900px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; height: 336.96px;"><!----><iframe data-v-2158f109="" title="HTML Content" sandbox="allow-scripts allow-same-origin allow-forms" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html style=&quot;overflow: auto;&quot; lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;晶界偏析效应模拟&lt;/title&gt;
+    &lt;script src=&quot;https://cdn-proxy.chatglm.cn/https%3A%2F%2Fcdn.tailwindcss.com&quot;&gt;&lt;/script&gt;
+    &lt;link href=&quot;https://cdn.staticfile.net/remixicon/3.5.0/remixicon.css&quot; rel=&quot;stylesheet&quot; crossorigin=&quot;anonymous&quot;&gt;
+    &lt;script&gt;
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        'lab-bg': '#0F172A',
+                        'lab-grid': '#1E293B',
+                        'atom-si': '#94A3B8',
+                        'atom-c': '#475569',
+                        'dopant-bad': '#EF4444',
+                        'dopant-good': '#10B981',
+                    }
+                }
+            }
+        }
+    &lt;/script&gt;
+    &lt;style&gt;
+        body { margin: 0; overflow: hidden; background: #000; }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .atom {
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        /* 晶界线发光效果 */
+        .gb-line {
+            transition: all 0.5s ease;
+        }
+        .gb-stable {
+            stroke: #10B981;
+            filter: drop-shadow(0 0 4px #10B981);
+            stroke-width: 2;
+        }
+        .gb-fragile {
+            stroke: #EF4444;
+            filter: drop-shadow(0 0 4px #EF4444);
+            stroke-width: 2;
+            stroke-dasharray: 4 2;
+        }
+        /* 滑块样式 */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #fff;
+            margin-top: -6px;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+            cursor: pointer;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            background: #334155;
+            border-radius: 2px;
+        }
+    &lt;/style&gt;
+
+&lt;style&gt;
+  @keyframes caretRainbow {
+    0%   { caret-color: #ef4444; }
+    16%  { caret-color: #f97316; }
+    32%  { caret-color: #eab308; }
+    48%  { caret-color: #22c55e; }
+    64%  { caret-color: #3b82f6; }
+    80%  { caret-color: #8b5cf6; }
+    100% { caret-color: #ec4899; }
+  }
+  .editable-hover {
+    outline: 2px dashed var(--txt_stroke_blue_1, #2454FF) !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+  }
+  .element-editing {
+    outline: 2px solid var(--txt_stroke_blue_1, #2454FF) !important;
+  }
+&lt;/style&gt;
+
+&lt;script&gt;
+  (function() {
+    // 为每个iframe生成唯一标识
+    const iframeId = 'code_698334ca74302cd521f97d66';
+
+    // 存储原始控制台方法
+    const originalConsole = {
+      log: console.log,
+      error: console.error,
+      warn: console.warn,
+      info: console.info,
+      debug: console.debug,
+      clear: console.clear
+    };
+
+    // 覆盖所有控制台方法
+    Object.keys(originalConsole).forEach(method =&gt; {
+      console[method] = function() {
+        const timestamp = new Date().toISOString();
+        const args = Array.from(arguments).map(arg =&gt; {
+          if (arg instanceof Error) {
+            return {
+              type: 'Error',
+              message: arg.message,
+              stack: arg.stack
+            };
+          }
+          return arg;
+        });
+
+        // 如果是clear方法，发送清除消息
+        if (method === 'clear') {
+          window.parent.postMessage({
+            type: 'console',
+            method: 'clear',
+            timestamp
+          }, '*');
+        } else {
+                  // 通过postMessage发送到父窗口
+        try {
+          window.parent.postMessage({
+            type: 'console',
+            iframeId: iframeId,
+            method,
+            args,
+            timestamp
+          }, '*');
+        } catch (e) {
+          window.parent.postMessage({
+            type: 'console',
+            iframeId: iframeId,
+            method: 'error',
+            args: ['[无法序列化的控制台输出]'],
+            timestamp
+          }, '*');
+        }
+        }
+
+        // 调用原始方法
+        return originalConsole[method].apply(console, arguments);
+      };
+    });
+
+    // 捕获未捕获的错误
+    window.addEventListener('error', function(event) {
+      console.error('[未捕获的错误]', event.message, '在', event.filename, '行:', event.lineno);
+      return false;
+    });
+
+    // 捕获未处理的Promise拒绝
+    window.addEventListener('unhandledrejection', function(event) {
+      console.error('[未处理的Promise拒绝]', event.reason);
+      return false;
+    });
+
+    // 监听DOM结构加载完成
+    document.addEventListener('DOMContentLoaded', function(event) {
+      console.log('[iframe] DOM结构加载完成');
+      window.parent.postMessage({
+        type: 'resourceStatus',
+        iframeId: iframeId,
+        status: 'domReady'
+      }, '*');
+    });
+
+    // 监听所有资源加载完成
+    window.addEventListener('load', function(event) {
+      // 通知父窗口页面已完全加载
+      window.parent.postMessage({
+        type: 'resourceStatus',
+        iframeId: iframeId,
+        status: 'complete'
+      }, '*');
+      return false;
+    });
+
+    // 监听来自父窗口的消息
+    window.addEventListener('message', function(event) {
+      if (event.data &amp;&amp; event.data.type === 'injectScript') {
+        try {
+          // 动态执行脚本
+          const script = document.createElement('script');
+          script.textContent = event.data.script;
+          document.head.appendChild(script);
+        } catch (e) {
+          console.error('注入脚本失败:', e);
+        }
+      }
+    });
+
+    window.addEventListener('click', function(event) {
+      // 点击事件
+      if (!event.isTrusted) {
+        return;
+      }
+      window.parent.postMessage({
+        type: 'iframeClick',
+        iframeId: iframeId
+      }, '*');
+      // 点击的目录锚点元素传给外层的目录 实现联动
+      if (event.target.tagName === 'A' &amp;&amp; event.target.href.includes('#')) {
+        window.parent.postMessage({
+          type: 'anchorClick',
+          iframeId: iframeId,
+          href: decodeURIComponent(event.target.href?.split('#')?.[1])
+        }, '*');
+      }
+      // 溯源信息点击
+      const className = event.target?.className;
+       if (className &amp;&amp; className?.indexOf?.('source-item-num') &gt; -1) {
+          window.parent.postMessage({
+            type: 'sourceItemClick',
+            iframeId: iframeId,
+            url: event.target.dataset?.id
+          }, '*');
+      }
+    });
+  })();
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body class=&quot;w-full h-screen flex items-center justify-center bg-black&quot;&gt;
+
+    &lt;!-- 主容器：16:9 比例 --&gt;
+    &lt;div class=&quot;relative w-full max-w-[90vw] aspect-video bg-lab-bg rounded-xl overflow-hidden shadow-2xl border border-slate-800 flex flex-col&quot;&gt;
+        
+        &lt;!-- 背景网格装饰 --&gt;
+        &lt;div class=&quot;absolute inset-0 z-0 opacity-20 pointer-events-none&quot; 
+             style=&quot;background-image: radial-gradient(#334155 1px, transparent 1px); background-size: 20px 20px;&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50 z-0&quot;&gt;&lt;/div&gt;
+
+        &lt;!-- 顶部标题栏 --&gt;
+        &lt;div class=&quot;relative z-10 flex-none h-14 border-b border-white/5 flex items-center justify-between px-6 bg-lab-bg/80 backdrop-blur-sm&quot;&gt;
+            &lt;div class=&quot;flex items-center gap-2&quot;&gt;
+                &lt;i class=&quot;ri-flask-line text-cyan-400&quot;&gt;&lt;/i&gt;
+                &lt;h1 class=&quot;text-white font-mono text-sm tracking-wider&quot;&gt;SI_C 晶界偏析模拟器 &lt;span class=&quot;text-slate-500 text-xs ml-2&quot;&gt;v1.0.4&lt;/span&gt;&lt;/h1&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;flex gap-4 text-xs font-mono text-slate-400&quot;&gt;
+                &lt;div class=&quot;flex items-center gap-1&quot;&gt;&lt;span class=&quot;w-2 h-2 rounded-full bg-slate-500&quot;&gt;&lt;/span&gt; Si/C 基体&lt;/div&gt;
+                &lt;div class=&quot;flex items-center gap-1&quot;&gt;&lt;span class=&quot;w-2 h-2 rounded-full bg-emerald-500&quot;&gt;&lt;/span&gt; 强化掺杂&lt;/div&gt;
+                &lt;div class=&quot;flex items-center gap-1&quot;&gt;&lt;span class=&quot;w-2 h-2 rounded-full bg-red-500&quot;&gt;&lt;/span&gt; 有害杂质&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- 舞台区：可视化展示 --&gt;
+        &lt;div class=&quot;relative z-10 flex-1 flex items-center justify-center overflow-hidden&quot; id=&quot;stage&quot;&gt;
+            
+            &lt;!-- SVG 晶格 --&gt;
+            &lt;svg id=&quot;lattice-svg&quot; class=&quot;w-full h-full&quot; viewBox=&quot;0 0 800 450&quot; preserveAspectRatio=&quot;xMidYMid slice&quot;&gt;
+                &lt;!-- 晶界线 (中心) --&gt;
+                &lt;line id=&quot;gb-boundary&quot; x1=&quot;0&quot; y1=&quot;225&quot; x2=&quot;800&quot; y2=&quot;225&quot; class=&quot;gb-line stroke-slate-700/50&quot; stroke-width=&quot;1&quot; /&gt;
+                
+                &lt;!-- 原子将由 JS 生成 --&gt;
+                &lt;g id=&quot;atoms-group&quot;&gt;&lt;/g&gt;
+            &lt;/svg&gt;
+
+            &lt;!-- 浮动数据面板 (HUD) --&gt;
+            &lt;div class=&quot;absolute top-6 right-6 w-48 glass-panel rounded-lg p-4 text-xs font-mono transition-opacity duration-300&quot; id=&quot;stats-panel&quot;&gt;
+                &lt;div class=&quot;mb-3 text-slate-400 border-b border-white/10 pb-2&quot;&gt;实时监测数据&lt;/div&gt;
+                &lt;div class=&quot;flex justify-between mb-1&quot;&gt;
+                    &lt;span class=&quot;text-slate-500&quot;&gt;晶界能 (E_gb)&lt;/span&gt;
+                    &lt;span id=&quot;energy-val&quot; class=&quot;text-cyan-300&quot;&gt;1.24 J/m²&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;flex justify-between mb-1&quot;&gt;
+                    &lt;span class=&quot;text-slate-500&quot;&gt;断裂强度&lt;/span&gt;
+                    &lt;span id=&quot;strength-val&quot; class=&quot;text-white&quot;&gt;100%&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;flex justify-between&quot;&gt;
+                    &lt;span class=&quot;text-slate-500&quot;&gt;偏析浓度&lt;/span&gt;
+                    &lt;span id=&quot;segregation-val&quot; class=&quot;text-yellow-400&quot;&gt;0.00 at%&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;mt-3 pt-2 border-t border-white/10&quot;&gt;
+                    &lt;div class=&quot;text-[10px] text-slate-500 leading-tight&quot; id=&quot;status-text&quot;&gt;系统处于纯净状态，晶界结构完整。&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+
+        &lt;!-- 底部控制台 --&gt;
+        &lt;div class=&quot;relative z-20 flex-none h-24 border-t border-white/10 bg-lab-bg/95 backdrop-blur-md flex items-center px-8 gap-8&quot;&gt;
+            
+            &lt;!-- 掺杂剂选择 --&gt;
+            &lt;div class=&quot;flex flex-col gap-2 w-1/3&quot;&gt;
+                &lt;label class=&quot;text-[10px] text-slate-500 font-mono uppercase tracking-widest&quot;&gt;选择掺杂剂类型&lt;/label&gt;
+                &lt;div class=&quot;flex gap-2&quot;&gt;
+                    &lt;button onclick=&quot;setDopant('none')&quot; class=&quot;flex-1 py-2 text-xs font-mono rounded border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition active:scale-95 selected-dopant ring-1 ring-cyan-500&quot; data-type=&quot;none&quot;&gt;纯净&lt;/button&gt;
+                    &lt;button onclick=&quot;setDopant('O')&quot; class=&quot;flex-1 py-2 text-xs font-mono rounded border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition active:scale-95&quot; data-type=&quot;O&quot;&gt;氧 (O)&lt;/button&gt;
+                    &lt;button onclick=&quot;setDopant('He')&quot; class=&quot;flex-1 py-2 text-xs font-mono rounded border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition active:scale-95&quot; data-type=&quot;He&quot;&gt;氦&lt;/button&gt;
+                    &lt;button onclick=&quot;setDopant('B')&quot; class=&quot;flex-1 py-2 text-xs font-mono rounded border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition active:scale-95&quot; data-type=&quot;B&quot;&gt;硼 (B)&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- 偏析程度滑块 --&gt;
+            &lt;div class=&quot;flex flex-col gap-2 flex-1&quot;&gt;
+                &lt;div class=&quot;flex justify-between&quot;&gt;
+                    &lt;label class=&quot;text-[10px] text-slate-500 font-mono uppercase tracking-widest&quot;&gt;偏析进程控制&lt;/label&gt;
+                    &lt;span id=&quot;slider-val&quot; class=&quot;text-[10px] text-cyan-400 font-mono&quot;&gt;0%&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;0&quot; class=&quot;w-full&quot; id=&quot;segregation-slider&quot; oninput=&quot;updateSimulation(this.value)&quot;&gt;
+            &lt;/div&gt;
+
+            &lt;!-- 状态指示灯 --&gt;
+            &lt;div class=&quot;w-12 flex items-center justify-center&quot;&gt;
+                &lt;div id=&quot;status-light&quot; class=&quot;w-3 h-3 rounded-full bg-slate-600 shadow-[0_0_10px_rgba(71,85,105,0.5)] transition-colors duration-500&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        // 配置
+        const ROWS = 12;
+        const COLS = 20;
+        const SVG_WIDTH = 800;
+        const SVG_HEIGHT = 450;
+        const GB_Y = SVG_HEIGHT / 2;
+        const ATOM_RADIUS = 8;
+        
+        // 状态
+        let currentDopant = 'none';
+        let atoms = [];
+
+        // 初始化晶格
+        function initLattice() {
+            const group = document.getElementById('atoms-group');
+            group.innerHTML = '';
+            atoms = [];
+
+            for (let r = 0; r &lt; ROWS; r++) {
+                for (let c = 0; c &lt; COLS; c++) {
+                    const x = (c + 0.5) * (SVG_WIDTH / COLS);
+                    const y = (r + 0.5) * (SVG_HEIGHT / ROWS);
+                    
+                    // 随机微扰，模拟真实晶格热振动
+                    const jitterX = (Math.random() - 0.5) * 4;
+                    const jitterY = (Math.random() - 0.5) * 4;
+
+                    const circle = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;circle&quot;);
+                    circle.setAttribute(&quot;cx&quot;, x + jitterX);
+                    circle.setAttribute(&quot;cy&quot;, y + jitterY);
+                    circle.setAttribute(&quot;r&quot;, ATOM_RADIUS);
+                    circle.setAttribute(&quot;fill&quot;, Math.random() &gt; 0.5 ? '#94A3B8' : '#475569'); // Si or C
+                    circle.setAttribute(&quot;opacity&quot;, &quot;0.8&quot;);
+                    circle.classList.add(&quot;atom&quot;);
+                    
+                    group.appendChild(circle);
+
+                    atoms.push({
+                        el: circle,
+                        baseX: x + jitterX,
+                        baseY: y + jitterY,
+                        isDopant: false,
+                        row: r,
+                        col: c
+                    });
+                }
+            }
+        }
+
+        // 设置掺杂剂类型
+        function setDopant(type) {
+            currentDopant = type;
+            
+            // 更新按钮样式
+            document.querySelectorAll('button').forEach(btn =&gt; {
+                if(btn.dataset.type === type) {
+                    btn.classList.add('ring-1', 'ring-cyan-500', 'text-white');
+                    btn.classList.remove('text-slate-300');
+                } else {
+                    btn.classList.remove('ring-1', 'ring-cyan-500', 'text-white');
+                    btn.classList.add('text-slate-300');
+                }
+            });
+
+            // 重置滑块
+            document.getElementById('segregation-slider').value = 0;
+            updateSimulation(0);
+        }
+
+        // 更新模拟状态
+        function updateSimulation(percent) {
+            const p = percent / 100;
+            const gbLine = document.getElementById('gb-boundary');
+            const energyVal = document.getElementById('energy-val');
+            const strengthVal = document.getElementById('strength-val');
+            const segVal = document.getElementById('segregation-val');
+            const statusText = document.getElementById('status-text');
+            const statusLight = document.getElementById('status-light');
+            const sliderVal = document.getElementById('slider-val');
+
+            sliderVal.innerText = percent + '%';
+
+            // 1. 决定哪些原子变成掺杂剂 (基于距离晶界的远近和随机性)
+            // 偏析逻辑：原子倾向于向晶界(GB)移动
+            
+            let dopantColor = '';
+            let targetEnergy = 1.24;
+            let targetStrength = 100;
+            let statusMsg = '';
+            let statusColor = '';
+
+            if (currentDopant === 'none') {
+                dopantColor = 'none';
+                targetEnergy = 1.24;
+                targetStrength = 100;
+                statusMsg = '系统纯净，晶界处于标准能态。';
+                statusColor = '#475569'; // slate-600
+                gbLine.setAttribute('class', 'gb-line stroke-slate-700/50');
+            } else if (currentDopant === 'O') {
+                dopantColor = '#EF4444'; // Red
+                targetEnergy = 1.24 - (0.4 * p); // 能量降低(热力学有利)
+                targetStrength = 100 - (60 * p); // 强度大幅下降
+                statusMsg = '氧原子偏析导致晶界氧化，形成非晶态二氧化硅，结构脆化。';
+                statusColor = '#EF4444';
+                gbLine.setAttribute('class', p &gt; 0.5 ? 'gb-line gb-fragile' : 'gb-line stroke-slate-700/50');
+            } else if (currentDopant === 'He') {
+                dopantColor = '#F59E0B'; // Amber
+                targetEnergy = 1.24 - (0.2 * p);
+                targetStrength = 100 - (80 * p); // 强度剧烈下降
+                statusMsg = '氦气泡在晶界聚集，产生体积膨胀，导致灾难性起泡与断裂。';
+                statusColor = '#F59E0B';
+                gbLine.setAttribute('class', p &gt; 0.5 ? 'gb-line gb-fragile' : 'gb-line stroke-slate-700/50');
+            } else if (currentDopant === 'B') {
+                dopantColor = '#10B981'; // Emerald
+                targetEnergy = 1.24 - (0.3 * p);
+                targetStrength = 100 + (40 * p); // 强度提升
+                statusMsg = '硼原子填充晶界空隙，增强原子间键合，起到钉扎强化作用。';
+                statusColor = '#10B981';
+                gbLine.setAttribute('class', p &gt; 0.5 ? 'gb-line gb-stable' : 'gb-line stroke-slate-700/50');
+            }
+
+            statusLight.style.backgroundColor = statusColor;
+            statusLight.style.boxShadow = `0 0 15px ${statusColor}`;
+
+            // 更新数值
+            energyVal.innerText = targetEnergy.toFixed(2) + ' J/m²';
+            strengthVal.innerText = Math.round(targetStrength) + '%';
+            segVal.innerText = (p * 2.5).toFixed(2) + ' at%';
+            statusText.innerText = statusMsg;
+
+            // 2. 动画更新原子位置和颜色
+            atoms.forEach(atom =&gt; {
+                const distToGB = Math.abs(atom.baseY - GB_Y);
+                const isNearGB = distToGB &lt; 60; // 晶界附近区域
+                
+                // 偏析概率：越靠近晶界，越容易变成掺杂剂
+                let segregationProb = 0;
+                if (isNearGB) {
+                    segregationProb = 1 - (distToGB / 60);
+                }
+
+                // 决定是否变色
+                if (currentDopant !== 'none' &amp;&amp; Math.random() &lt; segregationProb * p) {
+                    atom.el.setAttribute(&quot;fill&quot;, dopantColor);
+                    atom.el.setAttribute(&quot;r&quot;, ATOM_RADIUS + 2); // 杂质原子通常半径不同
+                } else {
+                    atom.el.setAttribute(&quot;fill&quot;, Math.random() &gt; 0.5 ? '#94A3B8' : '#475569');
+                    atom.el.setAttribute(&quot;r&quot;, ATOM_RADIUS);
+                }
+
+                // 决定位移 (模拟向晶界聚集)
+                let targetX = atom.baseX;
+                let targetY = atom.baseY;
+
+                if (currentDopant !== 'none' &amp;&amp; p &gt; 0) {
+                    // 如果是杂质，向晶界(Y=225)靠拢
+                    if (atom.el.getAttribute(&quot;fill&quot;) === dopantColor) {
+                        const dir = atom.baseY &lt; GB_Y ? 1 : -1;
+                        // 移动幅度取决于偏析程度
+                        targetY = atom.baseY + (dir * (GB_Y - atom.baseY) * p * 0.8);
+                        
+                        // 如果是 He (气泡)，产生横向排斥
+                        if (currentDopant === 'He') {
+                            targetX += (Math.random() - 0.5) * 20 * p;
+                        }
+                    }
+                }
+
+                atom.el.setAttribute(&quot;cx&quot;, targetX);
+                atom.el.setAttribute(&quot;cy&quot;, targetY);
+            });
+        }
+
+        // 启动
+        initLattice();
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;" style="width: 1152px; height: 648px; transform: translate(-50%, -50%) scale(0.52); transform-origin: center center; border: none; position: absolute; left: 50%; top: 50%; overflow: hidden; background: rgb(255, 255, 255); visibility: visible;"></iframe><!----></div>
+</body>
+</html>

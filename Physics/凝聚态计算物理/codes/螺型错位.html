@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>螺型位错 3D 可视化</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --accent-color: #00d2ff;
+            --panel-bg: #1e1e1e;
+            --highlight-color: #ffd700; /* Gold for the spiral path */
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        h1 {
+            margin: 0;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1000px;
+            box-sizing: border-box;
+        }
+
+        .canvas-container {
+            position: relative;
+            background: radial-gradient(circle at center, #2a2a2a 0%, #000 100%);
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            cursor: move;
+            border: 1px solid #333;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 500px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            background: var(--panel-bg);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 0.9rem;
+            color: #aaa;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            accent-color: var(--accent-color);
+            cursor: pointer;
+        }
+
+        .toggle-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .info-panel {
+            background: var(--panel-bg);
+            padding: 20px;
+            border-radius: 12px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .key-concept {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(0, 210, 255, 0.1);
+            border-radius: 6px;
+        }
+
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .highlight-gold {
+            color: var(--highlight-color);
+            font-weight: bold;
+        }
+
+        /* 3D Label styling (drawn on canvas) */
+        .label-3d {
+            position: absolute;
+            color: white;
+            font-size: 12px;
+            pointer-events: none;
+            text-shadow: 0 1px 3px black;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 8px 16px;
+            background: #333;
+            color: white;
+            border: 1px solid #555;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #444;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>螺型位错</h1>
+    <div class="subtitle">Screw Dislocation - 螺旋楼梯模型</div>
+</header>
+
+<main>
+    <div class="canvas-container" id="canvasContainer">
+        <canvas id="simCanvas"></canvas>
+    </div>
+
+    <div class="controls">
+        <div class="control-group">
+            <label>形变程度: <span id="twistVal">0%</span></label>
+            <input type="range" id="twistSlider" min="0" max="1" step="0.01" value="0.5">
+            <small style="color:#666">0% = 完美晶体, 100% = 一个柏氏矢量的扭转</small>
+        </div>
+
+        <div class="control-group">
+            <label>视图控制</label>
+            <div class="toggle-group">
+                <label><input type="checkbox" id="chkBonds" checked> 显示键连线</label>
+                <label><input type="checkbox" id="chkCore" checked> 显示中心轴</label>
+            </div>
+            <div class="toggle-group" style="margin-top:5px">
+                <label><input type="checkbox" id="chkHighlight" checked> <span class="highlight-gold">高亮螺旋路径</span></label>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label>操作</label>
+            <div class="btn-group">
+                <button id="btnRotate">自动旋转</button>
+                <button id="btnResetView">重置视角</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-panel">
+        <span class="info-title">核心概念解析</span>
+        <p>螺型位错就像一个没有尽头的<span class="highlight">螺旋停车场</span>或<span class="highlight">DNA双螺旋结构</span>。</p>
+        
+        <div class="key-concept">
+            <strong>观察要点：</strong>
+            <ul>
+                <li>当你绕着中心轴（绿色线）走 360 度，你会发现自己上升了一层原子的高度。这形成了一个斜坡。</li>
+                <li><span class="highlight-gold">金色连线</span>代表了一个连续的原子平面，它实际上是一张巨大的螺旋面。</li>
+                <li>与刃型位错不同，螺型位错的<strong>柏氏矢量</strong>是平行于位错线的（垂直向上）。</li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<script>
+    /**
+     * 3D Visualization Engine for Screw Dislocation
+     * Custom implementation using Canvas 2D
+     */
+    
+    const canvas = document.getElementById('simCanvas');
+    const ctx = canvas.getContext('2d');
+    const container = document.getElementById('canvasContainer');
+
+    // UI References
+    const twistSlider = document.getElementById('twistSlider');
+    const twistValDisplay = document.getElementById('twistVal');
+    const chkBonds = document.getElementById('chkBonds');
+    const chkCore = document.getElementById('chkCore');
+    const chkHighlight = document.getElementById('chkHighlight');
+    const btnRotate = document.getElementById('btnRotate');
+    const btnResetView = document.getElementById('btnResetView');
+
+    // 3D Scene Parameters
+    let width, height;
+    let cx, cy;
+    const focalLength = 800;
+    
+    // Rotation State
+    let angleX = -0.3; // Pitch
+    let angleY = 0.6;  // Yaw
+    let isDragging = false;
+    let lastMouseX, lastMouseY;
+    let autoRotate = true;
+
+    // Model Parameters
+    const layers = 9;          // Number of vertical layers
+    const atomsPerLayer = 12;  // Atoms in each ring
+    const radius = 100;        // Radius of the cylinder
+    const layerSpacing = 50;   // Vertical distance between layers
+    let atoms = [];
+    let bonds = [];
+
+    function init() {
+        resize();
+        createModel();
+        window.addEventListener('resize', resize);
+        requestAnimationFrame(loop);
+    }
+
+    function resize() {
+        width = container.clientWidth;
+        height = container.clientHeight || 500;
+        canvas.width = width;
+        canvas.height = height;
+        cx = width / 2;
+        cy = height / 2;
+    }
+
+    // --- Physics & Geometry Generation ---
+
+    function createModel() {
+        atoms = [];
+        bonds = [];
+
+        // Create rings of atoms
+        for (let z = 0; z < layers; z++) {
+            for (let i = 0; i < atomsPerLayer; i++) {
+                // Angle for this atom in the circle
+                const theta = (i / atomsPerLayer) * Math.PI * 2;
+                
+                // Base position (Perfect Crystal)
+                const xBase = radius * Math.cos(theta);
+                const yBase = radius * Math.sin(theta);
+                const zBase = (z - layers/2) * layerSpacing;
+
+                atoms.push({
+                    x: xBase,
+                    y: yBase,
+                    z: zBase,
+                    layer: z,
+                    index: i,
+                    // Color gradient based on height
+                    color: `hsl(${200 + z * 20}, 80%, 60%)`
+                });
+            }
+        }
+        
+        // Pre-calculate bonds for performance
+        // 1. Bonds within the same layer (ring neighbors)
+        for (let i = 0; i < atoms.length; i++) {
+            const a = atoms[i];
+            // Next neighbor in ring
+            const nextInRing = atoms.find(b => b.layer === a.layer && b.index === (a.index + 1) % atomsPerLayer);
+            if (nextInRing) bonds.push([a, nextInRing]);
+
+            // Vertical neighbor (above)
+            const above = atoms.find(b => b.layer === a.layer + 1 && b.index === a.index);
+            if (above) bonds.push([a, above]);
+        }
+    }
+
+    // --- 3D Math ---
+
+    function rotate(x, y, z, ax, ay) {
+        // Rotate around Y axis
+        let x1 = x * Math.cos(ay) - z * Math.sin(ay);
+        let z1 = z * Math.cos(ay) + x * Math.sin(ay);
+        
+        // Rotate around X axis
+        let y2 = y * Math.cos(ax) - z1 * Math.sin(ax);
+        let z2 = z1 * Math.cos(ax) + y * Math.sin(ax);
+
+        return { x: x1, y: y2, z: z2 };
+    }
+
+    function project(x, y, z) {
+        // Apply Twist (The Screw Dislocation Logic)
+        // Twist amount depends on angle around center (atan2) and the slider value
+        // For a screw dislocation: dz = (b / 2pi) * theta
+        // Here we simply offset Z based on angle
+        
+        const currentTwist = parseFloat(twistSlider.value);
+        
+        // Calculate original angle to determine twist direction
+        // We use the original x,y before rotation for the twist calc to keep physics consistent
+        const theta = Math.atan2(y, x);
+        
+        // Twist logic: as theta goes 0 -> 2PI, z shifts by -1 * layerSpacing * currentTwist
+        // This creates the helix
+        const zOffset = (theta / (Math.PI * 2)) * layerSpacing * currentTwist; 
+        
+        // Apply the geometric distortion
+        const distortedX = x; 
+        const distortedY = y;
+        const distortedZ = z + zOffset;
+
+        // Apply Camera Rotation
+        const r = rotate(distortedX, distortedY, distortedZ, angleX, angleY);
+
+        // Perspective Projection
+        const scale = focalLength / (focalLength + r.z + 400); // +400 pushes scene back
+        return {
+            x: r.x * scale + cx,
+            y: r.y * scale + cy,
+            z: r.z, // Keep Z for sorting
+            scale: scale
+        };
+    }
+
+    // --- Drawing ---
+
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+
+        // 1. Calculate all projected points
+        const projectedAtoms = atoms.map(atom => {
+            const p = project(atom.x, atom.y, atom.z);
+            return { ...atom, px: p.x, py: p.y, pz: p.z, scale: p.scale };
+        });
+
+        // 2. Sort by depth (Painters Algorithm) - Draw furthest first
+        projectedAtoms.sort((a, b) => b.pz - a.pz);
+
+        // 3. Draw Dislocation Line (Central Axis)
+        if (chkCore.checked) {
+            const topPoint = project(0, 0, (layers/2) * layerSpacing + 50);
+            const bottomPoint = project(0, 0, -(layers/2) * layerSpacing - 50);
+            
+            ctx.beginPath();
+            ctx.moveTo(bottomPoint.x, bottomPoint.y);
+            ctx.lineTo(topPoint.x, topPoint.y);
+            ctx.strokeStyle = '#00ff00';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // Label
+            ctx.fillStyle = '#00ff00';
+            ctx.font = '12px Arial';
+            ctx.fillText("位错线", topPoint.x + 10, topPoint.y);
+        }
+
+        // 4. Draw Highlighted Spiral Path (The "Staircase")
+        // We trace atoms index 0, then 1, then 2...
+        if (chkHighlight.checked && parseFloat(twistSlider.value) > 0.1) {
+            ctx.beginPath();
+            let started = false;
+            
+            // Draw one continuous helix arm
+            for(let i=0; i<atomsPerLayer; i++) {
+                // Collect all atoms at this index across layers
+                let spiralArm = [];
+                for(let l=0; l<layers; l++) {
+                    const atom = projectedAtoms.find(a => a.layer === l && a.index === i);
+                    if(atom) spiralArm.push(atom);
+                }
+                
+                // Connect them
+                for(let j=0; j<spiralArm.length; j++) {
+                    const a = spiralArm[j];
+                    if(!started) { ctx.moveTo(a.px, a.py); started=true; }
+                    else ctx.lineTo(a.px, a.py);
+                }
+            }
+            // Connect last layer back to first visually for the spiral effect (optional)
+            // But strictly it's just vertical connections twisted.
+            
+            ctx.strokeStyle = '#ffd700';
+            ctx.lineWidth = 4 * projectedAtoms[0].scale; // Adjust width by depth
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.stroke();
+            
+            // Label
+            ctx.fillStyle = '#ffd700';
+            ctx.fillText("螺旋面", projectedAtoms[projectedAtoms.length/2].px + 40, projectedAtoms[projectedAtoms.length/2].py);
+        }
+
+        // 5. Draw Bonds (Lines)
+        if (chkBonds.checked) {
+            ctx.lineWidth = 1;
+            for (let bond of bonds) {
+                const p1 = projectedAtoms.find(a => a === bond[0]);
+                const p2 = projectedAtoms.find(a => a === bond[1]);
+                
+                if (p1 && p2) {
+                    ctx.beginPath();
+                    ctx.moveTo(p1.px, p1.py);
+                    ctx.lineTo(p2.px, p2.py);
+                    
+                    // Opacity based on depth to enhance 3D feel
+                    const avgZ = (p1.pz + p2.pz) / 2;
+                    const alpha = Math.max(0.1, 1 - (avgZ + 200) / 1000);
+                    
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.3})`;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // 6. Draw Atoms
+        for (let atom of projectedAtoms) {
+            const r = 6 * atom.scale;
+            
+            // Gradient for 3D sphere look
+            const grad = ctx.createRadialGradient(
+                atom.px - r*0.3, atom.py - r*0.3, r*0.2,
+                atom.px, atom.py, r
+            );
+            
+            // Highlight logic for coloring
+            let color = atom.color;
+            // If this atom is part of the highlighted spiral (arbitrary choice for visual: index 0)
+            if (chkHighlight.checked && parseFloat(twistSlider.value) > 0.1) {
+                // Just slightly dim non-highlighted atoms if highlighting is on
+                color = atom.color.replace('60%', '40%');
+            }
+
+            grad.addColorStop(0, '#ffffff');
+            grad.addColorStop(0.3, color);
+            grad.addColorStop(1, '#000000');
+
+            ctx.beginPath();
+            ctx.arc(atom.px, atom.py, r, 0, Math.PI * 2);
+            ctx.fillStyle = grad;
+            ctx.fill();
+        }
+        
+        // Draw Burgers Vector Arrow
+        if (parseFloat(twistSlider.value) > 0.2) {
+            const origin = project(0, 0, -(layers/2)*layerSpacing);
+            const dest = project(0, 0, -(layers/2)*layerSpacing + layerSpacing); // One Burgers vector length up
+            
+            drawArrow(origin.x, origin.y, dest.x, dest.y, "#ff00ff", 2);
+            
+            ctx.fillStyle = "#ff00ff";
+            ctx.fillText("b (Burgers Vector)", dest.x + 15, dest.y);
+        }
+    }
+    
+    function drawArrow(x1, y1, x2, y2, color, width) {
+        const headlen = 10;
+        const angle = Math.atan2(y2 - y1, x2 - x1);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = width;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x2, y2);
+        ctx.lineTo(x2 - headlen * Math.cos(angle - Math.PI / 6), y2 - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(x2 - headlen * Math.cos(angle + Math.PI / 6), y2 - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.fillStyle = color;
+        ctx.fill();
+    }
+
+    function loop() {
+        if (autoRotate && !isDragging) {
+            angleY += 0.005;
+        }
+        draw();
+        requestAnimationFrame(loop);
+    }
+
+    // --- Interaction Handlers ---
+
+    function updateTwistDisplay() {
+        const val = Math.round(parseFloat(twistSlider.value) * 100);
+        twistValDisplay.textContent = val + "%";
+    }
+
+    twistSlider.addEventListener('input', updateTwistDisplay);
+    
+    // Mouse Rotation
+    canvas.addEventListener('mousedown', e => {
+        isDragging = true;
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+        autoRotate = false;
+    });
+
+    window.addEventListener('mouseup', () => isDragging = false);
+
+    window.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        const deltaX = e.clientX - lastMouseX;
+        const deltaY = e.clientY - lastMouseY;
+        
+        angleY += deltaX * 0.01;
+        angleX += deltaY * 0.01;
+        
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+    });
+
+    // Touch support
+    canvas.addEventListener('touchstart', e => {
+        isDragging = true;
+        lastMouseX = e.touches[0].clientX;
+        lastMouseY = e.touches[0].clientY;
+        autoRotate = false;
+    }, {passive: false});
+
+    canvas.addEventListener('touchmove', e => {
+        if (!isDragging) return;
+        e.preventDefault(); 
+        const deltaX = e.touches[0].clientX - lastMouseX;
+        const deltaY = e.touches[0].clientY - lastMouseY;
+        
+        angleY += deltaX * 0.01;
+        angleX += deltaY * 0.01;
+        
+        lastMouseX = e.touches[0].clientX;
+        lastMouseY = e.touches[0].clientY;
+    }, {passive: false});
+
+    btnRotate.addEventListener('click', () => {
+        autoRotate = !autoRotate;
+        btnRotate.textContent = autoRotate ? "停止旋转" : "自动旋转";
+    });
+
+    btnResetView.addEventListener('click', () => {
+        angleX = -0.3;
+        angleY = 0.6;
+        autoRotate = true;
+        btnRotate.textContent = "自动旋转";
+    });
+
+    // Initialize
+    init();
+
+</script>
+
+</body>
+</html>
