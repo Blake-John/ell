@@ -7,14 +7,11 @@
   "obsidian-admonition",
   "obsidian-mind-map",
   "obsidian-style-settings",
-  "pdf-plus",
   "obsidian-latex-suite",
   "highlightr-plugin",
   "obsidian-kanban",
   "obsidian-regex-pipeline",
   "better-mathjax",
   "obsidian-pandoc",
-  "obsidian-enhancing-export",
-  "better-export-pdf",
-  "obsidian-annotator"
+  "obsidian-git"
 ]
