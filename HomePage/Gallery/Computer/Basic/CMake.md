@@ -1,10 +1,12 @@
 [list2timeline]
+
 - CMake
-	- [01 Introduction](../../../../Computer/07%20C%20and%20C++/CMake/01%20Introduction.md)
-	- [02 Quick Start](../../../../Computer/07%20C%20and%20C++/CMake/02%20Quick%20Start.md)
-	- [03 Compile Process](../../../../Computer/07%20C%20and%20C++/CMake/03%20Compile%20Process.md)
-	- [04 Write CMakeLists](../../../../Computer/07%20C%20and%20C++/CMake/04%20Write%20CMakeLists.md)
-	- [05 CMake Program](../../../../Computer/07%20C%20and%20C++/CMake/05%20CMake%20Program.md)
-	- [06 Build](../../../../Computer/07%20C%20and%20C++/CMake/06%20Build.md)
-	- [07 CTest](../../../../Computer/07%20C%20and%20C++/CMake/07%20CTest.md)
-	- [CMake Commands](../../../../Computer/07%20C%20and%20C++/CMake/CMake%20Commands.md)
+ 	- [01 Introduction](../../../../Computer/07%20C%20and%20C++/CMake/01%20Introduction.md)
+ 	- [02 Quick Start](../../../../Computer/07%20C%20and%20C++/CMake/02%20Quick%20Start.md)
+ 	- [03 Compile Process](../../../../Computer/07%20C%20and%20C++/CMake/03%20Compile%20Process.md)
+ 	- [04 Write CMakeLists](../../../../Computer/07%20C%20and%20C++/CMake/04%20Write%20CMakeLists.md)
+ 	- [05 CMake Program](../../../../Computer/07%20C%20and%20C++/CMake/05%20CMake%20Program.md)
+ 	- [06 Build](../../../../Computer/07%20C%20and%20C++/CMake/06%20Build.md)
+ 	- [07 Install](../../../../Computer/07%20C%20and%20C++/CMake/07%Install.md)
+ 	- [08 CTest](../../../../Computer/07%20C%20and%20C++/CMake/08%20CTest.md)
+ 	- [CMake Commands](../../../../Computer/07%20C%20and%20C++/CMake/CMake%20Commands.md)
