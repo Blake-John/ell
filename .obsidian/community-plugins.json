@@ -13,5 +13,6 @@
   "obsidian-regex-pipeline",
   "better-mathjax",
   "obsidian-pandoc",
-  "obsidian-git"
+  "obsidian-git",
+  "obsidian-regex-replace"
 ]

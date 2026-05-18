@@ -3,3 +3,4 @@ Remove_space_in_url
 change_windows_pasted
 Change_path_to_relative
 latex_to_md
+trim_space_in_math

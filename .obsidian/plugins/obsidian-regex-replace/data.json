@@ -1,6 +1,6 @@
 {
-  "findText": "\\!\\[(.*)\\]\\((.*)\\)",
-  "replaceText": "![](./imgs/$2)",
+  "findText": "$ (.*) $",
+  "replaceText": "$$$1$$",
   "useRegEx": true,
   "selOnly": false,
   "caseInsensitive": false,
