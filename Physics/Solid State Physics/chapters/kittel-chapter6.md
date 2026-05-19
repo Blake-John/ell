@@ -225,7 +225,7 @@ Figure 4 In the ground state of a system of N free electrons the occupied orbita
 
 
 
-Table 1 Calculated free electron Fermi surface parameters for metals at room temperature
+Table 1 Calculated free electron Fermi surface parameters for metals at room temperature ^798a84
 
 
 

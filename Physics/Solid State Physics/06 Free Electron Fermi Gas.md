@@ -452,6 +452,8 @@ $$
 
 $T = 0$ 时，$N$ 个电子从最低能量的 $\mathbf{k}$ 态开始填充。由于 $\epsilon \propto k^2$，等能面是球面，所以被占据的态在 $k$ 空间中形成一个**球**——这就是**费米球**。
 
+![[imgs/fermi_ball.png]]
+
 费米球的表面称为**费米面**（Fermi surface），其半径定义为**费米波矢** $k_F$：
 
 $$
@@ -501,7 +503,7 @@ $$
 
 ### 9. Table 1 的解读
 
-Kittel 的 Table 1 计算了多种金属的费米参数。几个值得注意的要点：
+Kittel 的 Table 1 [[chapters/kittel-chapter6#^798a84|kittel-chapter6]] 计算了多种金属的费米参数。几个值得注意的要点：
 
 - **单价金属**（Li, Na, K, Rb, Cs, Cu, Ag, Au）：电子浓度 $\sim 10^{22}$–$10^{23}$ cm⁻³，$\epsilon_F \sim 1.5$–$7$ eV，$v_F \sim 10^8$ cm/s
 - **双价金属**（Be, Mg, Ca等）：电子浓度更高，$\epsilon_F$ 更大（Be 高达 14.14 eV）
@@ -542,6 +544,10 @@ $$
 > - 在费米能处，$D(\epsilon_F) \approx \frac{3}{2}\frac{N}{\epsilon_F}$：单位能量间隔内的态数正比于总电子数除以费米能
 > - 这个关系**不依赖于具体材料参数**，是自由电子气的普适结果
 
+![[imgs/dos.png]]
+
+> Figure 5. Density of single-particle states as a function of energy, for a free electron gas in three dimensions. The dashed curve represents the density $f ( \epsilon , T ) D ( \epsilon )$ of filled orbitals at a finite temperature, but such that $k _ { B } T$ is small in comparison with $\epsilon _ { F } .$ The shaded area represents the filled orbitals at absolute zero. The average energy is increased when the temperature is increased from 0 to T, for electrons are thermally excited from region 1 to region 2.
+
 #### 图 5 的解读
 
 图 5 展示了：
@@ -554,3 +560,273 @@ $$
 > 三维薛定谔方程 → 周期性边界条件 → 平面波解 $\psi_{\mathbf{k}} = e^{i\mathbf{k}\cdot\mathbf{r}}$ → 色散关系 $\epsilon \propto k^2$ → $k$ 空间态计数 → 费米球 → $k_F = (3\pi^2 N/V)^{1/3}$ → $\epsilon_F = \frac{\hbar^2}{2m}(3\pi^2 N/V)^{2/3}$ → 态密度 $D(\epsilon) \propto \epsilon^{1/2}$
 
 这些结果是下一节计算电子热容的基础：只有费米面附近 $\sim k_BT$ 能量范围内的电子（占比 $\sim T/T_F$）才能参与热激发，所以电子热容 $\propto T$，远小于经典预测。
+
+---
+
+## HEAT CAPACITY OF THE ELECTRON GAS
+
+### 1. 问题的历史背景
+
+这是早期金属电子理论发展中**最困难的问题**。
+
+经典统计力学预测自由粒子的热容为 $\frac{3}{2}k_B$（每个自由度 $\frac{1}{2}k_B$，三个方向）。如果 $N$ 个原子各贡献一个价电子，电子气的热容应为：
+
+$$
+C_{el}^{\text{classical}} = \frac{3}{2}Nk_B
+$$
+
+这与单原子理想气体的热容完全相同。但实验发现，室温下电子贡献的热容远小于此值，通常不到经典预测的 **1%**。
+
+> [!warning] 核心矛盾
+> 电子表现得像是**高度自由**的（参与电导），却又不贡献热容。Lorenz 等早期物理学家对此困惑不解。这个矛盾只有在泡利不相容原理和费米分布函数被发现后才得以解决。
+
+Fermi 本人认识到："比热在绝对零度消失，在低温下与绝对温度成正比。"
+
+### 2. 定性理解：为什么热容如此之小？
+
+关键物理图像来自图 5。当从 $T = 0$ 加热到温度 $T$ 时：
+
+- 只有费米能附近 $\sim k_BT$ 能量范围内的电子才能被热激发
+- 这部分电子占总数的比例 $\sim k_BT/\epsilon_F = T/T_F$
+- 每个被激发的电子获得能量 $\sim k_BT$
+
+因此热激发涉及的总能量：
+
+$$
+U_{el} \approx \left(\frac{NT}{T_F}\right) \cdot k_BT \tag{22}
+$$
+
+热容为：
+
+$$
+C_{el} = \frac{\partial U}{\partial T} \approx Nk_B\left(\frac{T}{T_F}\right) \tag{23}
+$$
+
+由于 $T_F \sim 5 \times 10^4$ K，在室温下：
+
+$$
+\frac{T}{T_F} \sim \frac{300}{50000} = 0.006
+$$
+
+所以电子热容比经典值小约两个数量级。
+
+> [!tip] 物理本质
+> 绝大多数电子被泡利不相容原理"冻结"在低能态。它们想被激发，但低能态已经满了，无处可去。只有费米面附近 $\sim k_BT$ 范围内的电子才有"空位"可供跃迁。这就是量子统计对经典统计的根本修正。
+
+### 3. 定量推导
+
+#### 3.1 能量增量的表达式
+
+将系统从 $T = 0$ 加热到温度 $T$ 时，总能量的增加为：
+
+$$
+\Delta U = \int_0^{\infty} d\epsilon\, \epsilon\, D(\epsilon)\, f(\epsilon) - \int_0^{\epsilon_F} d\epsilon\, \epsilon\, D(\epsilon) \tag{24}
+$$
+
+- 第一项：温度 $T$ 时的总能量（$f$ 是费米-狄拉克分布）
+- 第二项：$T = 0$ 时的总能量
+
+> [!note] 为什么对 $\Delta U$ 求导等于对 $U(T)$ 求导？
+> 因为 $U(T) = \Delta U + U(0)$，而 $U(0)$ 是一个与温度无关的常数（由 $N$、$V$、$m$ 决定）。常数的导数为零，所以：
+> $$
+> C_{el} = \frac{\partial U(T)}{\partial T} = \frac{\partial (\Delta U)}{\partial T}
+> $$
+> 使用 $\Delta U$ 而非 $U(T)$ 是因为它直接对应"加热注入的能量"，物理意义更清晰。
+
+#### 3.2 巧妙的恒等变换
+
+直接对 (24) 求导不方便，因为两项之差看不出激发过程的物理图像。Kittel 的做法是先做恒等变换，把 $\Delta U$ 改写成两个物理意义明确的积分之和。
+
+**第一步：粒子数守恒。** 无论温度怎么变，总电子数不变：
+
+$$
+N = \int_0^{\infty} d\epsilon\, D(\epsilon)\, f(\epsilon) = \int_0^{\epsilon_F} d\epsilon\, D(\epsilon) \tag{25}
+$$
+
+左边是温度 $T$ 时的总电子数（每个态按占据概率 $f$ 加权），右边是 $T = 0$ 时的总电子数（费米能以下全满）。
+
+**第二步：乘以 $\epsilon_F$ 构造恒等式。** 注意 $\epsilon_F$ 是常数，可以放进积分号：
+
+$$
+\int_0^{\infty} \epsilon_F\, D(\epsilon)\, f(\epsilon)\, d\epsilon = \int_0^{\epsilon_F} \epsilon_F\, D(\epsilon)\, d\epsilon \tag{26}
+$$
+
+**第三步：改写 (24)。** 将 (24) 的第一项拆成两段：
+
+$$
+\Delta U = \underbrace{\int_0^{\epsilon_F} \epsilon\, D f\, d\epsilon}_{\text{(A)}} + \underbrace{\int_{\epsilon_F}^{\infty} \epsilon\, D f\, d\epsilon}_{\text{(B)}} - \underbrace{\int_0^{\epsilon_F} \epsilon\, D\, d\epsilon}_{\text{(C)}}
+$$
+
+对 (A) 段，把 $\epsilon$ 写成 $\epsilon = \epsilon_F - (\epsilon_F - \epsilon)$：
+
+$$
+\text{(A)} = \int_0^{\epsilon_F} \epsilon_F\, D f\, d\epsilon - \int_0^{\epsilon_F} (\epsilon_F - \epsilon)\, D f\, d\epsilon
+$$
+
+对 (A) 的第一部分，利用 (26) 的左半边拆成两段：
+
+$$
+\int_0^{\epsilon_F} \epsilon_F\, D f\, d\epsilon = \int_0^{\epsilon_F} \epsilon_F\, D\, d\epsilon - \int_{\epsilon_F}^{\infty} \epsilon_F\, D f\, d\epsilon
+$$
+
+代入并整理。$(A) + (B) - (C)$ 中，$\int_0^{\epsilon_F} \epsilon_F D d\epsilon$ 与 $-(C)$ 合并为 $\int_0^{\epsilon_F} (\epsilon_F - \epsilon) D d\epsilon$，$(B)$ 与 $-\int_{\epsilon_F}^{\infty} \epsilon_F D f d\epsilon$ 合并为 $\int_{\epsilon_F}^{\infty} (\epsilon - \epsilon_F) D f d\epsilon$，最后利用 $D - Df = D(1-f)$，最终得到：
+
+$$
+\boxed{\Delta U = \int_{\epsilon_F}^{\infty} d\epsilon\, (\epsilon - \epsilon_F)\, f(\epsilon)\, D(\epsilon) + \int_0^{\epsilon_F} d\epsilon\, (\epsilon_F - \epsilon)\, [1 - f(\epsilon)]\, D(\epsilon)} \tag{27}
+$$
+
+> [!important] 公式 (27) 的物理诠释
+> - **第一项**：将电子从费米面激发到 $\epsilon > \epsilon_F$ 的空轨道所需的能量。$f(\epsilon)D(\epsilon)d\epsilon$ 是被激发的电子数，$(\epsilon - \epsilon_F)$ 是每个电子获得的能量
+> - **第二项**：从 $\epsilon < \epsilon_F$ 的轨道上移走电子所对应的能量。$[1-f(\epsilon)]$ 是该轨道被腾空的概率，$(\epsilon_F - \epsilon)$ 是把电子从 $\epsilon$ 提升到费米面所需的能量
+> - **两项都是正的**，分别对应图 5 中区域 2（电子激发）和区域 1（空穴产生）的贡献
+>
+> 加热电子气的过程可以理解为在费米面两侧同时产生**电子-空穴对**。
+
+#### 3.3 热容的积分表达式
+
+对 $\Delta U$ 关于 $T$ 求导。注意只有 $f(\epsilon)$ 依赖于温度：
+
+$$
+C_{el} = \frac{dU}{dT} = \int_0^{\infty} d\epsilon\, (\epsilon - \epsilon_F)\, \frac{df}{dT}\, D(\epsilon) \tag{28}
+$$
+
+#### 3.4 关键近似：在费米面处取值
+
+对于金属中感兴趣的温度（$k_BT/\epsilon_F < 0.01$），$(\epsilon - \varepsilon_{F})df/dT$ 在 $\epsilon_F$ 附近有尖锐的正峰。因此 $D(\epsilon)$ 在积分区间内变化缓慢，可以近似为常数：
+
+$$
+C_{el} \cong D(\epsilon_F) \int_0^{\infty} d\epsilon\, (\epsilon - \epsilon_F)\, \frac{df}{dT} \tag{29}
+$$
+
+#### 3.5 化学势的近似
+
+![[imgs/u_ef.png]]
+
+> Figure 8 Variation with temperature of the chemical potential $\mu ,$ for free electron Fermi gases in one and three dimensions. In common metals $\tau / \epsilon _ { F } \simeq 0 . 0 1$ at room temperature, so that $\mu$ is closely equal to $\epsilon _ { F } .$ These curves were calculated from series expansions of the integral for the number of particles in the system.
+
+在 $k_BT \ll \epsilon_F$ 的条件下（图 7 和图 8 显示 $\mu$ 偏离 $\epsilon_F$ 极小），可以将费米-狄拉克分布中的 $\mu$ 替换为常数 $\epsilon_F$。
+
+令 $\tau \equiv k_BT$，计算导数：
+
+$$
+\frac{df}{dT} = \frac{\epsilon - \epsilon_F}{\tau^2} \cdot \frac{\exp[(\epsilon - \epsilon_F)/\tau]}{\left\{\exp[(\epsilon - \epsilon_F)/\tau] + 1\right\}^2} \tag{30}
+$$
+
+#### 3.6 换元积分
+
+令 $x \equiv (\epsilon - \epsilon_F)/\tau$，则 $d\epsilon = \tau\, dx$。代入 (29) 和 (30)：
+
+$$
+C_{el} = k_B^2 T\, D(\epsilon_F) \int_{-\epsilon_F/\tau}^{\infty} dx\, x^2 \frac{e^x}{(e^x + 1)^2} \tag{32}
+$$
+
+由于 $\epsilon_F/\tau \sim 100$ 或更大，被积函数在 $x = -\epsilon_F/\tau$ 处已经小到可以忽略（$e^x$ 因子使然），因此可以安全地将下界扩展到 $-\infty$：
+
+$$
+\int_{-\infty}^{\infty} dx\, x^2 \frac{e^x}{(e^x + 1)^2} = \frac{\pi^2}{3} \tag{33}
+$$
+
+> [!tip] 这个积分
+> 这个积分是 Sommerfeld 展开的核心结果。被积函数 $e^x/(e^x+1)^2$ 是一个偶函数形状的峰（在 $x=0$ 处最大），$x^2$ 加权后给出 $\pi^2/3$。这个结果与材料细节无关，是纯数学的。
+
+#### 3.7 最终结果
+
+代入 (33)：
+
+$$
+\boxed{C_{el} = \frac{1}{3}\pi^2 D(\epsilon_F)\, k_B^2 T} \tag{34}
+$$
+
+利用 $D(\epsilon_F) = 3N/(2\epsilon_F) = 3N/(2k_BT_F)$（来自公式 21）：
+
+$$
+\boxed{C_{el} = \frac{1}{2}\pi^2 N k_B \frac{T}{T_F}} \tag{36}
+$$
+
+> [!important] 核心结论
+> - $C_{el} \propto T$：与实验一致
+> - 数值系数 $\frac{1}{2}\pi^2 \approx 4.93$
+> - 与经典值 $\frac{3}{2}Nk_B$ 相比，量子结果多了一个因子 $\pi^2 T/T_F$（室温下 $\sim 0.06$）
+> - $T_F$ 是费米温度，**不是**电子的实际温度，只是为了方便而引入的参考量
+
+### 4. 实验验证
+
+#### 4.1 $C/T$ vs $T^2$ 作图法
+
+在温度远低于 Debye 温度 $\Theta_D$ 和费米温度 $T_F$ 的条件下，金属的热容可以写成电子和声子贡献之和：
+
+$$
+C = \gamma T + AT^3
+$$
+
+其中：
+- $\gamma T$：电子贡献（$\propto T$）
+- $AT^3$：声子（晶格振动）贡献（Debye 模型，$\propto T^3$）
+
+两边除以 $T$：
+
+$$
+\frac{C}{T} = \gamma + AT^2 \tag{37}
+$$
+
+以 $C/T$ 为纵轴、$T^2$ 为横轴作图，应得到一条直线：
+- **截距** = $\gamma$（电子热容系数，Sommerfeld 参数）
+- **斜率** = $A$（声子贡献系数）
+
+图 9 展示了钾的实验数据，确实呈线性关系。
+
+#### 4.2 Table 2 的解读
+
+Table 2 列出了多种金属的实验 $\gamma$ 值和自由电子模型计算值的对比。几个关键观察：
+
+- 碱金属（Li, Na, K, Rb, Cs）的 $m_{th}/m$ 在 1.2–1.45 之间，与自由电子模型相当接近
+- Cu, Ag, Au（贵金属）的值也较接近 1
+- 有些金属偏离较大（Ca: 1.9, Pb: 1.97）
+- Bi 的 $\gamma$ 极小（0.008），说明自由电子模型对其极不适用
+
+#### 4.3 有效质量比 $m_{th}/m$ 偏离 1 的三种物理机制
+
+> [!note] 定义
+> 定义**热有效质量** $m_{th}$：
+> $$
+> \frac{m_{th}}{m} \equiv \frac{\gamma_{\text{observed}}}{\gamma_{\text{free}}} \tag{38}
+> $$
+> 由于 $\epsilon_F \propto 1/m$，所以 $\gamma \propto m$，这个比值自然出现。
+
+三种机制：
+
+**（a）电子-晶格周期势相互作用**
+- 电子在晶格周期势中的运动不同于自由电子
+- 用**能带有效质量** $m^*$ 描述：$(m^*)^{-1} = \frac{1}{\hbar^2}\frac{d^2\epsilon}{dk^2}$
+- 这是下一章（能带理论）的核心内容
+
+**（b）电子-声子相互作用**
+- 运动电子会极化/扭曲周围晶格
+- 电子试图"拖拽"附近离子一起运动
+- 这增加了电子的惯性 → 有效质量增大
+- 这种效应在重元素中更显著
+
+**（c）电子-电子相互作用**
+- 运动电子在周围电子气中引起惯性反应
+- 相当于电子拖拽着其他电子一起运动
+- 也导致有效质量增大
+
+### 5. 重费米子化合物（Heavy Fermions）
+
+> [!tip] 极端现象
+> 某些金属化合物的电子热容系数 $\gamma$ 比常规金属**大 2–3 个数量级**！
+>
+> 包括：$\text{UBe}_{13}$、$\text{CeAl}_3$、$\text{CeCu}_2\text{Si}_2$ 等
+>
+> 这些化合物中的 f 电子由于波函数重叠极弱（第 9 章紧束缚模型），惯性质量可达 $\sim 1000\, m$。
+
+这意味着在重费米子化合物中，电子被晶格周期势"束缚"得如此之紧，以至于它们表现得像是质量巨大的准粒子。这是强关联电子体系中最引人注目的现象之一。
+
+---
+
+## 参见
+
+- [[Kittel Chapter 7 - Energy Bands]] — 电子在周期势中的行为，能带有效质量的来源
+- [[Kittel Chapter 5 - Phonons]] — 晶格振动，电子-声子相互作用
+- [[Sommerfeld Expansion]] — 更一般的 Sommerfeld 展开方法
+- [[Heavy Fermion Compounds]] — 强关联电子体系
