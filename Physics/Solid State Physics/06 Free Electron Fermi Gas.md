@@ -353,5 +353,204 @@ $$
 
 - [[Kittel Chapter 7 - Energy Bands]] — 电子在周期势中的行为，解释为什么电子不被离子芯散射
 - [[Kittel Chapter 5 - Phonons]] — 晶格振动，周期性边界条件的引入
-- [[Free Electron Gas in 3D]] — 三维自由电子气的完整处理
+- [[#FREE ELECTRON GAS IN THREE DIMENSIONS]] — 三维自由电子气的完整处理（本文）
 - [[Heat Capacity of Electron Gas]] — 电子热容的量子理论
+
+---
+
+## FREE ELECTRON GAS IN THREE DIMENSIONS
+
+### 1. 从一维到三维的过渡
+
+一维问题让我们建立了基本概念（量子化能级、泡利填充、费米能），但真实金属是三维的。三维情况下数学更复杂，但物理本质相同。
+
+### 2. 三维薛定谔方程
+
+自由电子的三维薛定谔方程为：
+
+$$
+-\frac{\hbar^2}{2m}\left(\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2}\right)\psi_{\mathbf{k}}(\mathbf{r}) = \epsilon_{\mathbf{k}}\psi_{\mathbf{k}}(\mathbf{r}) \tag{6}
+$$
+
+### 3. 硬壁边界条件 vs 周期性边界条件
+
+#### 硬壁边界条件（初步尝试）
+
+如果电子被限制在边长为 $L$ 的立方体中（原点在角落），驻波解为：
+
+$$
+\psi_n(\mathbf{r}) = A \sin\left(\frac{\pi n_x x}{L}\right)\sin\left(\frac{\pi n_y y}{L}\right)\sin\left(\frac{\pi n_z z}{L}\right) \tag{7}
+$$
+
+其中 $n_x, n_y, n_z$ 为正整数。这个解可行，但后续处理（计数态、取热力学极限）不够方便。
+
+#### 周期性边界条件（更好的选择）
+
+更便利的是采用**周期性边界条件**（periodic boundary conditions），在第 5 章声子部分已经引入过：
+
+$$
+\psi(x+L, y, z) = \psi(x, y, z) \tag{8}
+$$
+
+对 $y$ 和 $z$ 方向同样要求周期性。这意味着波函数在盒子边界处"首尾相接"，消除了表面效应。
+
+> [!note] 为什么选周期性边界条件？
+> - 消除了硬壁边界带来的表面效应，更聚焦材料的体性质
+> - 允许使用行波解（平面波），比驻波更方便
+> - $k$ 空间中态的计数变得简洁
+> - 热力学极限（$L \to \infty$）下，结果与边界条件的选择无关
+
+### 4. 平面波解与量子数
+
+满足薛定谔方程 (6) 和周期性条件 (8) 的解是**行波平面波**：
+
+$$
+\boxed{\psi_{\mathbf{k}}(\mathbf{r}) = \exp(i\mathbf{k} \cdot \mathbf{r})} \tag{9}
+$$
+
+但波矢 $\mathbf{k}$ 的分量不是任意的，必须满足周期性条件。代入 (8)：
+
+$$
+\exp[ik_x(x+L)] = \exp(i 2n\pi (x+L)/L) = \exp(i 2n\pi x/L) \cdot \exp(i 2n\pi) = \exp(i 2n\pi x/L) \tag{11}
+$$
+
+其中用到了 $\exp(i2n\pi) = 1$。因此允许的波矢分量为：
+
+$$
+k_x = 0, \quad \pm\frac{2\pi}{L}, \quad \pm\frac{4\pi}{L}, \quad \dots \tag{10}
+$$
+
+$k_y$ 和 $k_z$ 同理。每个分量形如 $2n\pi/L$，其中 $n$ 为整数（正、负或零）。
+
+> [!important] 量子数
+> 波矢 $\mathbf{k}$ 的三个分量 $(k_x, k_y, k_z)$ 是此问题的**量子数**（加上自旋量子数 $m_s$）。每个允许的 $\mathbf{k}$ 值对应一个单电子轨道。
+
+### 5. 能量、动量和速度
+
+将平面波 (9) 代入薛定谔方程 (6)，得到能量：
+
+$$
+\boxed{\epsilon_{\mathbf{k}} = \frac{\hbar^2}{2m}k^2 = \frac{\hbar^2}{2m}(k_x^2 + k_y^2 + k_z^2)} \tag{12}
+$$
+
+动量算符 $\mathbf{p} = -i\hbar\nabla$ 作用在平面波上：
+
+$$
+\mathbf{p}\psi_{\mathbf{k}}(\mathbf{r}) = -i\hbar\nabla\exp(i\mathbf{k}\cdot\mathbf{r}) = \hbar\mathbf{k}\,\psi_{\mathbf{k}}(\mathbf{r}) \tag{13}
+$$
+
+所以平面波是动量的本征函数，本征值为 $\hbar\mathbf{k}$。电子速度为：
+
+$$
+\mathbf{v} = \frac{\hbar\mathbf{k}}{m}
+$$
+
+> [!tip] 色散关系
+> $\epsilon \propto k^2$ 是自由粒子的**色散关系**（dispersion relation）。等能面在 $k$ 空间中是**球面**——这是三维各向同性自由粒子最重要的几何特征。
+
+### 6. 费米球（Fermi Sphere）
+
+$T = 0$ 时，$N$ 个电子从最低能量的 $\mathbf{k}$ 态开始填充。由于 $\epsilon \propto k^2$，等能面是球面，所以被占据的态在 $k$ 空间中形成一个**球**——这就是**费米球**。
+
+费米球的表面称为**费米面**（Fermi surface），其半径定义为**费米波矢** $k_F$：
+
+$$
+\epsilon_F = \frac{\hbar^2}{2m}k_F^2 \tag{14}
+$$
+
+### 7. 费米波矢 $k_F$ 的推导
+
+关键问题：$k_F$ 与电子浓度 $N/V$ 的关系是什么？
+
+**计数 $k$ 空间中的态：**
+
+- 由 (10)，$k_x$ 相邻允许值的间距为 $2\pi/L$，$k_y, k_z$ 同理
+- 因此 $k$ 空间中每个允许的 $\mathbf{k}$ 点占据体积 $(2\pi/L)^3$
+- 即：**单位 $k$ 空间体积中的态密度为 $V/(2\pi)^3$**（$V = L^3$ 是实空间体积）
+
+**费米球内的总态数：**
+
+费米球体积为 $\frac{4}{3}\pi k_F^3$，乘以每个态占据的 $k$ 空间体积的倒数，再乘以自旋因子 2：
+
+$$
+\underbrace{2}_{\text{自旋}} \times \underbrace{\frac{4\pi k_F^3/3}{(2\pi/L)^3}}_{\text{轨道数}} = \frac{V}{3\pi^2}k_F^3 = N \tag{15}
+$$
+
+解出 $k_F$：
+
+$$
+\boxed{k_F = \left(\frac{3\pi^2 N}{V}\right)^{1/3}} \tag{16}
+$$
+
+> [!important] 核心结果
+> $k_F$ **只依赖于电子浓度 $N/V$**，与盒子尺寸 $L$ 无关。这是一个纯粹的密度效应。
+
+### 8. 费米能 $\epsilon_F$ 和费米速度 $v_F$
+
+将 (16) 代入 (14)：
+
+$$
+\boxed{\epsilon_F = \frac{\hbar^2}{2m}\left(\frac{3\pi^2 N}{V}\right)^{2/3}} \tag{17}
+$$
+
+费米速度（费米面上电子的速度）：
+
+$$
+\boxed{v_F = \frac{\hbar k_F}{m} = \frac{\hbar}{m}\left(\frac{3\pi^2 N}{V}\right)^{1/3}} \tag{18}
+$$
+
+### 9. Table 1 的解读
+
+Kittel 的 Table 1 计算了多种金属的费米参数。几个值得注意的要点：
+
+- **单价金属**（Li, Na, K, Rb, Cs, Cu, Ag, Au）：电子浓度 $\sim 10^{22}$–$10^{23}$ cm⁻³，$\epsilon_F \sim 1.5$–$7$ eV，$v_F \sim 10^8$ cm/s
+- **双价金属**（Be, Mg, Ca等）：电子浓度更高，$\epsilon_F$ 更大（Be 高达 14.14 eV）
+- **三价/四价**（Al, Ga, In, Pb, Sn）：介于两者之间
+- **费米温度** $T_F = \epsilon_F/k_B \sim 10^4$–$10^5$ K，远高于室温
+
+> [!tip] 费米速度有多大？
+> $v_F \sim 10^8$ cm/s = $10^6$ m/s，大约是光速的 0.3%。在室温下，金属中传导电子的典型速度就是这个量级，远大于经典热运动速度（$\sim 10^5$ m/s）。这就是为什么电子传导如此高效。
+
+### 10. 态密度 $D(\epsilon)$
+
+**态密度**（density of states）$D(\epsilon)$ 定义为单位能量间隔内的轨道数，是连接微观量子态和宏观热力学量的核心桥梁。
+
+#### 推导
+
+由 (17) 反过来写：能量 $\leq \epsilon$ 的总轨道数（计入自旋）为：
+
+$$
+N(\epsilon) = \frac{V}{3\pi^2}\left(\frac{2m\epsilon}{\hbar^2}\right)^{3/2} \tag{19}
+$$
+
+对 $\epsilon$ 求导即得态密度：
+
+$$
+\boxed{D(\epsilon) \equiv \frac{dN}{d\epsilon} = \frac{V}{2\pi^2}\left(\frac{2m}{\hbar^2}\right)^{3/2}\epsilon^{1/2}} \tag{20}
+$$
+
+#### 简化形式
+
+比较 (19) 和 (20)，可以写出更简洁的关系：
+
+$$
+\boxed{D(\epsilon) = \frac{3N}{2\epsilon}} \tag{21}
+$$
+
+> [!important] 态密度的物理意义
+> - $D(\epsilon) \propto \epsilon^{1/2}$：能量越高，可用的态越密集
+> - 在费米能处，$D(\epsilon_F) \approx \frac{3}{2}\frac{N}{\epsilon_F}$：单位能量间隔内的态数正比于总电子数除以费米能
+> - 这个关系**不依赖于具体材料参数**，是自由电子气的普适结果
+
+#### 图 5 的解读
+
+图 5 展示了：
+- **$D(\epsilon)$ 曲线**：从原点出发按 $\epsilon^{1/2}$ 增长
+- **$T = 0$**：占据函数是阶跃函数，乘积 $f(\epsilon)D(\epsilon)$ 在 $\epsilon_F$ 处截断（阴影面积 = 总电子数）
+- **$T > 0$**：$f(\epsilon)$ 在 $\epsilon_F$ 附近软化，占据曲线从区域 1（略低于 $\epsilon_F$）转移到区域 2（略高于 $\epsilon_F$），总电子数不变
+
+### 11. 逻辑总结
+
+> 三维薛定谔方程 → 周期性边界条件 → 平面波解 $\psi_{\mathbf{k}} = e^{i\mathbf{k}\cdot\mathbf{r}}$ → 色散关系 $\epsilon \propto k^2$ → $k$ 空间态计数 → 费米球 → $k_F = (3\pi^2 N/V)^{1/3}$ → $\epsilon_F = \frac{\hbar^2}{2m}(3\pi^2 N/V)^{2/3}$ → 态密度 $D(\epsilon) \propto \epsilon^{1/2}$
+
+这些结果是下一节计算电子热容的基础：只有费米面附近 $\sim k_BT$ 能量范围内的电子（占比 $\sim T/T_F$）才能参与热激发，所以电子热容 $\propto T$，远小于经典预测。

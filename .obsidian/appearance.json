@@ -5,7 +5,7 @@
   "nativeMenus": false,
   "baseFontSize": 15,
   "monospaceFontFamily": "Consolas",
-  "textFontFamily": "Cambria Math,Comic Sans MS,Cascadia Code,Consolas,Cambria,Arial,Times New Roman,Candara,Century Gothic",
+  "textFontFamily": "Cambria Math,华文宋体,华文仿宋,Comic Sans MS,Cascadia Code,Consolas,Cambria,Arial,Times New Roman,Candara,Century Gothic",
   "enabledCssSnippets": [
     "MCL Gallery Cards",
     "MCL Multi Column",
