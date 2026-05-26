@@ -133,7 +133,7 @@ $$
 
 The standing waves are labeled () or (-) according to whether or not they change sign when -x is substituted for x. Both standing waves are composed of equal parts of right- and left-directed traveling waves. 
 
-# Origin of the Energy Gap
+## Origin of the Energy Gap
 
 The two standing waves -() and -(-) pile up electrons at different regions, and therefore the two waves have different values of the potential energy in the field of the ions of the lattice. This is the origin of the energy gap. The probability density  of a particle is $\psi ^ { * } \psi = | \psi | ^ { 2 }$ . For a pure traveling wave exp(ikx), we have $\rho = \exp ( - i k x ) \exp ( i k x ) = 1$ , so that the charge density is constant. The charge density is not constant for linear combinations of plane waves. Consider the standing wave -() in (5); for this we have 
 
@@ -165,7 +165,7 @@ which concentrates electrons away from the ion cores. In Fig. 3b we show the ele
 
 When we calculate the average or expectation values of the potential energy over these three charge distributions, we find that the potential energy of $\rho ( + )$ is lower than that of the traveling wave, whereas the potential energy of $\rho ( - )$ is higher than the traveling wave. We have an energy gap of width $E _ { \mathrm { g } }$ if the energies of $\rho ( - )$ and $\rho ( + )$ differ by $E _ { \mathrm { g } } .$ Just below the energy gap at points A in Fig. 2 the wavefunction is $\psi ( + )$ , and just above the gap at points B the wavefunction is $\psi ( - )$ . 
 
-# Magnitude of the Energy Gap
+## Magnitude of the Energy Gap
 
 The wavefunctions at the Brillouin zone boundary $k = \pi / a$ are $\sqrt { 2 }$ cos x/a and $\sqrt { 2 }$ sin x/a, normalized over unit length of line. Let us suppose that the potential energy of an electron in the crystal at point x is 
 
@@ -407,7 +407,7 @@ $$
 
 Equation (27) is a useful form of the wave equation in a periodic lattice, although unfamiliar because a set of algebraic equations has taken the place of the usual differential equation (24). The set appears unpleasant and formidable because there are, in principle, an infinite number of $C ( k \mathrm { ~ - ~ } G )$ to be determined. In practice a small number will often suffice, perhaps two or four. It takes some experience to appreciate the practical advantages of the algebraic approach. 
 
-# Restatement of the Bloch Theorem
+## Restatement of the Bloch Theorem
 
 Once we determine the C’s from (27), the wavefunction (25) is given as 
 
@@ -435,7 +435,7 @@ $$
 
 Because $\exp ( - i G T ) = 1$ by (2.17), it follows that $u _ { k } ( x + T ) = u _ { k } ( x )$ , thereby establishing the periodicity of $u _ { k }$ . This is an alternate and exact proof of the Bloch theorem and is valid even when the $\psi _ { k }$ are degenerate. 
 
-# Crystal Momentum of an Electron
+## Crystal Momentum of an Electron
 
 What is the significance of the wavevector k used to label the Bloch function? It has several properties: 
 
@@ -451,7 +451,7 @@ because $u _ { \mathrm { k } } ( \mathbf { r + r } ) = u _ { \mathrm { k } } ( \
 
 • The quantity k enters in the conservation laws that govern collision processes in crystals. (The conservation laws are really selection rules for transitions.) Thus is called the crystal momentum of an electron. If an electron k-k absorbs in a collision a phonon of wavevector q, the selection rule is ${ \bf k } + { \bf q } =$ $\mathbf { k } ^ { \prime } + \mathbf { G }$ . In this process the electron is scattered from a state k to a state $\mathbf { k } ^ { \prime } .$ , with G a reciprocal lattice vector. Any arbitrariness in labeling the Bloch functions can be absorbed in the G without changing the physics of the process. 
 
-# Solution of the Central Equation
+## Solution of the Central Equation
 
 The central equation (27), 
 
@@ -473,7 +473,7 @@ At a given $k ,$ each root  or $\epsilon _ { k }$ lies on a different energy ba
 
 Most often k will be taken in the first zone, to reduce possible confusion in the labeling. If we chose a k different from the original by some reciprocal lattice vector, we would have obtained the same set of equations in a different order—but having the same energy spectrum. 
 
-# Kronig-Penney Model in Reciprocal Space
+## Kronig-Penney Model in Reciprocal Space
 
 As an example of the use of the central equation (31) for a problem that is exactly solvable, we use the Kronig-Penney model of a periodic delta-function potential: 
 
@@ -549,7 +549,7 @@ $$
 
 which agrees with the Kronig-Penney result (21b) with P written for $m A a ^ { 2 } / 2 \hbar ^ { 2 }$ . 
 
-# Empty Lattice Approximation
+## Empty Lattice Approximation
 
 Actual band structures are usually exhibited as plots of energy versus wavevector in the first Brillouin zone. When wavevectors happen to be given outside the first zone, they are carried back into the first zone by subtracting a suitable reciprocal lattice vector. Such a translation can always be found. The operation is helpful in visualization. 
 
@@ -582,7 +582,7 @@ Figure 8 Low-lying free electron energy bands of the empty sc lattice, as transf
 
 These free electron bands are plotted in Fig. 8. It is a good exercise to plot the same bands for k parallel to the [111] direction of wavevector space. 
 
-# Approximate Solution Near a Zone Boundary
+## Approximate Solution Near a Zone Boundary
 
 We suppose that the Fourier components $U _ { G }$ of the potential energy are small in comparison with the kinetic energy of a free electron at the zone boundary. We first consider a wavevector exactly at the zone boundary at ${ \scriptstyle { \frac { 1 } { 2 } } } G$ , that is, at $\pi / a$ . Here 
 
@@ -708,7 +708,7 @@ We cut the series off at $N \pi / L = \pi / a .$ , for this is the zone boundary
 
 Each primitive cell contributes exactly one independent value of k to each energy band. This result carries over into three dimensions. With account taken of the two independent orientations of the electron spin, there are 2N independent orbitals in each energy band. If there is a single atom of valence, one in each primitive cell, the band can be half filled with electrons. If each atom contributes two valence electrons to the band, the band can be exactly filled. If there are two atoms of valence, one in each primitive cell, the band can also be exactly filled. 
 
-# Metals and Insulators
+## Metals and Insulators
 
 If the valence electrons exactly fill one or more bands, leaving others empty, the crystal will be an insulator. An external electric field will not cause current flow in an insulator. (We suppose that the electric field is not strong enough to disrupt the electronic structure.) Provided that a filled band is separated by an energy gap from the next higher band, there is no continuous way to change the total momentum of the electrons if every accessible state is filled. Nothing changes when the field is applied. This is quite unlike the situation for free electrons for which k increases uniformly in a field (Chapter 6). 
 
