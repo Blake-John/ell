@@ -233,7 +233,7 @@ where now both sides of the equation refer to the coordinates in k space.
 
 We see from the vector cross-product in (7) that in a magnetic field an electron moves in k space in a direction normal to the direction of the gradient of the energy , so that the electron moves on a surface of constant energy. The value of the projection $k _ { \mathbf { B } }$ of k on B is constant during the motion. The motion in k space is on a plane normal to the direction of B, and the orbit is defined by the intersection of this plane with a surface of constant energy. 
 
-# Physical Derivation of $\hbar \dot { \bf k } = { \bf F }$
+## Physical Derivation of $\hbar \dot { \bf k } = { \bf F }$
 
 We consider the Bloch eigenfunction $\psi _ { \mathbf { k } }$ belonging to the energy eigenvalue $\epsilon _ { \mathbf { k } }$ and wavevector k: 
 
@@ -301,7 +301,8 @@ $$
 
 derived in (5) by a different method. A rigorous derivation of (16) by an entirely different method is given in Appendix E. 
 
-# Holes
+
+## Holes
 
 The properties of vacant orbitals in an otherwise filled band are important in semiconductor physics and in solid state electronics. Vacant orbitals in a band are commonly called holes, and without holes there would be no transistors. A hole acts in applied electric and magnetic fields as if it has a positive charge e. The reason is given in five steps in the boxes that follow. 
 
@@ -381,7 +382,7 @@ Figure 9 (a) $\mathbf { A } \mathbf { t } t = 0$ all states are filled except F 
 Figure 10 Motion of electrons in the conduction band and holes in the valence band in the electric field E. The hole and electron drift velocities are in opposite directions, but their electric currents are in the same direction, the direction of the electric field.
 
 
-# Effective Mass
+## Effective Mass
 
 When we look at the energy-wavevector relation $\epsilon = ( \hbar ^ { 2 } / 2 m ) k ^ { 2 }$ for free electrons, we see that the coefficient of $k ^ { 2 }$ determines the curvature of  versus k. Turned about, we can say that 1/m, the reciprocal mass, determines the curvature. For electrons in a band there can be regions of unusually high curvature near the band gap at the zone boundary, as we see from the solutions in Chapter 7 of the wave equation near the zone boundary. If the energy gap is small in comparison with the free electron energy  at the boundary, the curvature is enhanced by the factor $\lambda / E _ { \mathrm { g } } .$ . 
 
@@ -429,7 +430,7 @@ $$
 
 where , 	 are Cartesian coordinates. 
 
-# Physical Interpretation of the Effective Mass
+## Physical Interpretation of the Effective Mass
 
 How can an electron of mass m when put into a crystal respond to applied fields as if the mass were $m ^ { * } ?$ It is helpful to think of the process of Bragg reflection of electron waves in a lattice. Consider the weak interaction approximation treated in Chapter 7. Near the bottom of the lower band the orbital is represented quite adequately by a plane wave exp(ikx) with momentum  -k; the wave component $\exp [ i ( k - G ) x ]$ with momentum $\hbar ( k { - } G )$ is small and increases only slowly as $k$ is increased, and in this region $m ^ { * } \simeq m$ . An increase in the reflected component $\exp [ i ( k - G ) x ]$ as $k$ is increased represents momentum transfer to the electron from the lattice. 
 
@@ -451,7 +452,7 @@ As we proceed in the second band away from the boundary, the amplitude of $\exp 
 
 If the energy in a band depends only slightly on $k ,$ then the effective mass will be very large. That is, $m ^ { * } / m \gg 1$ when $d ^ { 2 } { \epsilon } / d k ^ { 2 }$ is very small. The tightbinding approximation discussed in Chapter 9 gives quick insight into the formation of narrow bands. If the wavefunctions centered on neighboring atoms overlap very little, then the overlap integral is small; the width of the band narrow, and the effective mass large. The overlap of wavefunctions centered on neighboring atoms is small for the inner or core electrons. The 4f electrons of the rare earth metals, for example, overlap very little. 
 
-# Effective Masses in Semiconductors
+## Effective Masses in Semiconductors
 
 In many semiconductors it has been possible to determine by cyclotron resonance the effective masses of carriers in the conduction and valence bands near the band edges. The determination of the energy surface is equivalent to a determination of the effective mass tensor (29). Cyclotron resonance in a semiconductor is carried out with centimeter wave or millimeter wave radiation at low carrier concentration. 
 
@@ -503,7 +504,7 @@ Values of the mass parameters are given in Table 2. The forms (32) are only appr
 
 The perturbation theory of band edges (Problem 9.8) suggests that the electron effective mass should be proportional to the band gap, approximately, for a direct gap crystal. We use Tables 1 and 2 to find the fairly constant values $m _ { e } / ( m E _ { g } ) = 0 . 0 6 3 , \ 0 . 0 6 0$ , and 0.051 in $( \mathrm { e V } ) ^ { - 1 }$ for the series InSb, InAs, and InP, in agreement with this suggestion. 
 
-# Silicon and Germanium
+## Silicon and Germanium
 
 The conduction and valence bands of germanium are shown in Fig. 14, based on a combination of theoretical and experimental results. The valence band edge in both Si and Ge is at $\mathbf k = 0$ and is derived from $p _ { 3 / 2 }$ and $p _ { 1 / 2 }$ states of the free atoms, as is clear from the tight-binding approximation (Chapter 9) to the wavefunctions. 
 
@@ -678,7 +679,7 @@ $$
 
 If $m _ { h } = m _ { e } ,$ then $\begin{array} { r } { \mu = \frac { 1 } { 2 } E _ { \mathrm { g } } } \end{array}$ and the Fermi level is in the middle of the forbidden gap. 
 
-# Intrinsic Mobility
+## Intrinsic Mobility
 
 The mobility is the magnitude of the drift velocity of a charge carrier per unit electric field: 
 
@@ -812,7 +813,7 @@ The numbers of holes and electrons are equal in the intrinsic regime. The intrin
 
 Germanium has $4 . 4 2 \times 1 0 ^ { 2 2 }$ atoms per $\mathrm { c m ^ { 3 } }$ . The purification of Ge has been carried further than any other element. The concentration of the common electrically active impurities—the shallow donor and acceptor impurities—has been reduced below 1 impurity atom in $1 0 ^ { 1 1 }$ Ge atoms (Fig. 21). For example, the concentration of P in Ge can be reduced below $4 \times 1 0 ^ { 1 0 } \mathrm { c m } ^ { - 3 }$ . There are impurities (H, O, Si, C) whose concentrations in Ge cannot usually be reduced below $1 0 ^ { 1 2 } { - } 1 0 ^ { 1 4 } \mathrm { ~ c m ^ { - 3 } }$ , but these do not affect electrical measurements and therefore may be hard to detect. 
 
-# Thermal Ionization of Donors and Acceptors
+## Thermal Ionization of Donors and Acceptors
 
 The calculation of the equilibrium concentration of conduction electrons from ionized donors is identical with the standard calculation in statistical mechanics of the thermal ionization of hydrogen atoms (TP, p. 369). If there are no acceptors present, the result in the low temperature limit $k _ { B } T \ll E _ { d }$ is 
 
@@ -908,7 +909,7 @@ Table 7 Electron and hole concentrations in semimetals
 
 Consider a multilayer crystal of alternating thin layers of different compositions. Coherent layers on a nanometer thickness scale may be deposited by molecular-beam epitaxy or metal-organic vapor deposition, thus building up a superperiodic structure on a large scale. Systems of alternate layers of GaAs and GaAlAs have been studied to 50 periods or more, with lattice spacing A of perhaps 5 nm (50 Å). A superperiodic crystal potential arises from the superperiodic structure and acts on the conduction electrons and holes to create new (small) Brillouin zones and mini energy bands superposed on the band structures of the constituent layers. Here we treat the motion of an electron in a superlattice in an applied electric field. 
 
-# Bloch Oscillator
+## Bloch Oscillator
 
 Consider a collisionless electron in a periodic lattice in one dimension, with motion normal to the planes of the superlattice. The equation of motion in a constant electric field parallel to k is $\hbar d k / d t = - e E$ or, for motion across a Brillouin zone with reciprocal lattice vector $G = 2 \pi / A$ , we have $\hbar G = \hbar 2 \pi / A = e E T$ where T is the period of the motion. The Bloch, frequency of the motion is $\omega _ { B } = 2 \pi / T = e E A / \hbar$ The electron accelerates from. $k = 0$ toward the zone boundary; when it reaches $k = \pi / A$ it reappears (as by an Umklapp process) at the zone boundary at the identical point $- \pi / A$ , using the argument of Chapter 2. 
 
@@ -932,7 +933,7 @@ $$
 
 This confirms that the Bloch oscillation frequency in real space is $\omega _ { B } = e E A / \hbar$ . The motion in the periodic lattice is quite different from the motion in free space, for which the acceleration is constant. 
 
-# Zener Tunneling
+## Zener Tunneling
 
 Thus far we have considered the effect of the electrostatic potential eEz $( \mathrm { o r } - e E n A )$ on one energy band; the potential tilts the whole band. Higher bands will also be tilted similarly, creating the possibility of crossing between ladder levels of different bands. The interaction between different band levels at the same energy opens the possibility for an electron in one band at n to cross to another band at $n ^ { \prime }$ . This field-induced interband tunneling is an example of Zener breakdown, met most often at a single junction as in the Zener diode. 
 
